@@ -1,9 +1,24 @@
 .jumbotron{
-    background-color: white;
+    background-color: rgba(49, 70, 91, 0.7);
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 0px !important;
+    padding-bottom: 27px;
 }
 
-hr {
-    margin-top: 0;
+.titulo{
+    margin-top:0;
+    margin-bottom: 40px;
+}
+
+.fondologin {
+    background-image: url("/assets/fondologin.jpg");
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
 }
 
 input {
@@ -11,6 +26,34 @@ input {
     padding-bottom: 0%;
 }
 
-#icono{
-    padding-left: 85%;
+.blanco{
+    color: white;
+}
+
+.form-control-plaintext{
+    border-bottom: 1px solid #ccc;
+}
+
+.spanIcon{
+    background: transparent;
+    border: none;
+    position: relative;
+    padding: 0;
+    width: 0%;
+}
+
+.iconlogin{
+    position: absolute;
+    right: 10px;
+    top: 9px;
+}
+
+.login .input-group{
+    margin-bottom: 3rem !important;
+}
+
+.btn{
+background-color: #f3a117;
+color: white;
+font-weight: bold;
 }
