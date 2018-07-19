@@ -8,9 +8,9 @@
       <div class="jumbotron col-xs-10 col-md-6 col-lg-4 sombra">
         <div class="text-center">
               <h3 class="blanco titulo">Iniciar sesión</h3>         
-            <form class="login">
+            <form class="login" (keydown)="keyDownLogin($event, name, pass)">
               <div class="input-group mb-3">   
-                <input type="text" class="form-control-plaintext blanco" placeholder="Usuario">
+                <input type="text" class="form-control-plaintext blanco" placeholder="Usuario" name="name" [(ngModel)]="name">
                 <span class="input-group-addon spanIcon">
                   <i class="glyphicon glyphicon-user iconlogin blanco" id="icono"></i>
                 </span>
@@ -19,14 +19,14 @@
     
           
               <div class="input-group mb-3" style="margin-bottom: 4rem !important;">
-                <input type="password" class="form-control-plaintext blanco" placeholder="Contraseña">
+                <input type="password" class="form-control-plaintext blanco" placeholder="Contraseña" name="pass" [(ngModel)]="pass">
                 <span class="input-group-addon spanIcon">
                   <i class="glyphicon glyphicon-lock iconlogin blanco" id="icono"></i>
                 </span>
               </div>
     
               <div class="text-center">
-                <button type="button" class="btn">Iniciar</button>
+                <button type="button" class="btn" (click)="loggear(name, pass)">Iniciar</button>
               </div>
               
             </form> 
