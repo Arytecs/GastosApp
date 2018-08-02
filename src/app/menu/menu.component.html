@@ -15,16 +15,19 @@
                     </li>
                     <div class="menu">
                         <li>
-                            <a routerLink="./login">Login </a>
+                            <a class="active" routerLink="/home">Home </a>
                         </li>
                         <li>
-                            <a href="#" class="active">Love snippet<span class="glyphicon glyphicon-heart pull-right"></span></a>
+                            <a routerLink="/prueba" >Prueba<span class="glyphicon glyphicon-heart pull-right"></span></a>
                         </li>
                         <li>
-                            <a href="#">Like it? <span class="glyphicon glyphicon-star pull-right"></span></a>
+                            <a>Like it? <span class="glyphicon glyphicon-star pull-right"></span></a>
                         </li>
                         <li>
-                            <a href="#">Settings <span class="glyphicon glyphicon-cog pull-right"></span></a>
+                            <a>Settings <span class="glyphicon glyphicon-cog pull-right"></span></a>
+                        </li>
+                        <li>
+                            <a href="#">Log Out<span class="glyphicon glyphicon-log-out pull-right"></span></a>
                         </li>
                     </div>
                     
@@ -32,7 +35,7 @@
     	    </div>   
             <div class="content">
                 <div class="col-md-12">
-                    <app-home></app-home>
+                    <router-outlet></router-outlet>
                 </div>
             </div>
 		</div>

@@ -8,7 +8,7 @@
 }
 .side-bar
 {
-    background:#74AFAD;
+    background:rgba(49, 70, 91, 0.7);
     position:absolute;
     height:100%;
     width:200px;
@@ -66,7 +66,7 @@
 .side-bar ul .menu li  a.active
 {
     padding-left:17px;
-    background:#D9853B;
+    background:#f3a117;
     border-left:3px solid #ECECEA;
 }
 
