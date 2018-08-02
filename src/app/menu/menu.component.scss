@@ -16,74 +16,67 @@
     transition: margin-left 0.5s;
 }
 
-.side-bar ul
+.side-bar 
 {
-    list-style:none;
-    padding:0px;
+    ul{
+        list-style:none;
+        padding:0px;
+
+        li.menu-head{
+            font-family: 'Lato', sans-serif;
+            padding:20px;
+
+            a{
+                color:#fff;
+                text-decoration:none;
+                height:50px;
+            }
+        }
+
+        .menu-head  a{
+            color:#fff;
+            text-decoration:none;
+            height:50px;
+        }
+
+        .menu li  a 
+        {
+            color:#fff;
+            text-decoration:none;
+            display:inline-table;
+            width:100%;
+            padding-left:20px;
+            padding-right:20px;
+            padding-top:10px;
+            padding-bottom:10px;
+
+            &:hover{
+                border-left:3px solid #ECECEA;    
+                padding-left:17px;
+            }
+
+            &.active{
+                padding-left:17px;
+                background:#f3a117;
+                border-left:3px solid #ECECEA;
+
+                &:before{
+                    content:"";
+                    position: absolute;
+                    width: 0;
+                    height: 0;
+                    border-top: 20px solid transparent;
+                     border-bottom: 20px solid transparent;
+                     
+                     border-left: 7px solid #D9853B;
+                     margin-top: -10px;
+                     margin-left: 180px;
+                }
+            }
+        }
+    }
     
 }
-
-.side-bar ul li.menu-head
-{
-    font-family: 'Lato', sans-serif;
-    padding:20px;
-}
-
-
-.side-bar ul li.menu-head a
-{
-    color:#fff;
-    text-decoration:none;
-    height:50px;
-}
-
-
-.side-bar ul .menu-head  a
-{
-    color:#fff;
-    text-decoration:none;
-    height:50px;
-}
-
-.side-bar ul .menu li  a 
-{
-    color:#fff;
-    text-decoration:none;
-    display:inline-table;
-    width:100%;
-    padding-left:20px;
-    padding-right:20px;
-    padding-top:10px;
-    padding-bottom:10px;
-}
-
-.side-bar ul .menu li  a:hover
-{
-    border-left:3px solid #ECECEA;    
-    padding-left:17px;
-}
-
-.side-bar ul .menu li  a.active
-{
-    padding-left:17px;
-    background:#f3a117;
-    border-left:3px solid #ECECEA;
-}
-
-.side-bar ul .menu li  a.active:before {
-   content:"";
-   position: absolute;
-   width: 0;
-   height: 0;
-   border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent;
-	
-	border-left: 7px solid #D9853B;
-    margin-top: -10px;
-    margin-left: 180px;
-}
-
-
 .content
 {
     padding-left: 200px;
