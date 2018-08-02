@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lato);
+@import url(http://fonts.googleapis.com/?family=Lato);
 
 .container
 {
@@ -93,4 +93,27 @@
 {
     padding-left:50px;
     transition: padding-left 0.5s;
+}
+
+@media(max-width: 700px){
+    #menuDesktop{
+        display: none;
+    }
+    #menuMobile{
+        display: block;
+    }
+}
+
+@media(min-width: 756px){
+    #menuDesktop{
+        display: block;
+    }
+    #menuMobile{
+        display: none;
+    }
+}
+
+#menuMobile{
+    position: absolute;
+    bottom: 0;
 }
