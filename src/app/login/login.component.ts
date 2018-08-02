@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.logginService.getAll(this.user.name, this.user.pass).subscribe(data => {
       console.log(data);
       if(data.id==1){
-        this.router.navigate(['/menu']);
+        this.router.navigate(['/home']);
       }
     });
   }
