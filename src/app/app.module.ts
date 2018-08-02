@@ -11,17 +11,13 @@ import { MenuComponent } from './menu/menu.component';
 import { LogginService } from 'src/app/loggin.service'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { PruebaComponent } from './prueba/prueba.component';
 
 
 const appRoutes: Routes = [
   {path: '', component:LoginComponent},
-  {
-    path: 'menu', 
-    component:MenuComponent,
-    children: [
-      {path: '', component: HomeComponent}
-    ]
-  }
+  {path: 'home', component:HomeComponent},
+  {path: 'prueba', component: PruebaComponent}
 ]
 
 
@@ -31,7 +27,8 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    PruebaComponent
   ],
   imports: [
     BrowserModule,
