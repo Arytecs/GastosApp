@@ -23,9 +23,7 @@ export class LoginComponent implements OnInit {
 
   public loggear(nombre:string, password:string){
     this.user = new Usuario(nombre, password)
-    console.log(this.user);
     this.logginService.getAll(this.user.name, this.user.pass).subscribe(data => {
-      console.log(data);
       if(data.id==1){
         this.router.navigate(['/home']);
       }

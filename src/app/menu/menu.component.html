@@ -7,7 +7,7 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="wrapper">
+		<div class="wrapper" id="menuDesktop">
     	    <div class="side-bar">
                 <ul>
                     <li class="menu-head">
@@ -15,19 +15,13 @@
                     </li>
                     <div class="menu">
                         <li>
-                            <a routerLinkActive="active" routerLink="/home">Home <span class="glyphicon glyphicon-home pull-right"></span></a>
+                            <a routerLinkActive="active" routerLink="/home">Home <i class="glyphicon glyphicon-home pull-right"></i></a>
                         </li>
                         <li>
-                            <a routerLinkActive="active" routerLink="/prueba" >Prueba<span class="glyphicon glyphicon-heart pull-right"></span></a>
-                        </li>
+                            <a routerLinkActive="active" routerLink="/prueba" >Prueba<i class="glyphicon glyphicon-heart pull-right"></i></a>
+                        </li>                        
                         <li>
-                            <a>Like it? <span class="glyphicon glyphicon-star pull-right"></span></a>
-                        </li>
-                        <li>
-                            <a>Settings <span class="glyphicon glyphicon-cog pull-right"></span></a>
-                        </li>
-                        <li>
-                            <a href="#">Log Out<span class="glyphicon glyphicon-log-out pull-right"></span></a>
+                            <a href="#">Log Out<i class="glyphicon glyphicon-log-out pull-right"></i></a>
                         </li>
                     </div>
                     
@@ -38,6 +32,15 @@
                     <router-outlet></router-outlet>
                 </div>
             </div>
-		</div>
+        </div>
+        <div id="menuMobile">
+            <div class="col-xs-12 navbar-inverse navbar-fixed-bottom">
+                <div class="row" id="bottomNav">
+                  <div class="col-xs-4 text-center"><a routerLinkActive="active" routerLink="/home"><i class="glyphicon glyphicon-home"></i></a></div>
+                  <div class="col-xs-4 text-center"><a routerLinkActive="active" routerLink="/prueba"><i class="glyphicon glyphicon-heart"></i></a></div>
+                  <div class="col-xs-4 text-center"><a href="#"><i class="glyphicon glyphicon-log-out"></i></a></div>
+                </div>
+            </div>
+        </div>
 	</div>
 </div>
