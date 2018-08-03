@@ -1,11 +1,8 @@
 @import url(http://fonts.googleapis.com/?family=Lato);
+@import "../../css/_variables.scss";
+@import "~bootstrap/scss/bootstrap-grid.scss";
+@import "../../css/_flexbox.scss";
 
-.container
-{
-    width:800px;
-    overflow:hidden;
-    display:inline-block;
-}
 
 
 .side-bar 
@@ -56,7 +53,7 @@
 
             &.active{
                 padding-left:17px;
-                background:#f3a117;
+                background: $orange;
                 border-left:3px solid #ECECEA;
 
                 &:before{
@@ -94,58 +91,59 @@
     transition: padding-left 0.5s;
 }
 
-@media(max-width: 767.98px){
-    #menuDesktop{
-        display: none;
-    }
-    #menuMobile{
-        display: block;
-    }
-}
-
-@media(min-width: 756px){
-    #menuDesktop{
-        display: block;
-    }
-    #menuMobile{
-        display: none;
-    }
+#menuDesktop{
+    display: block;
 }
 
 #menuMobile{
     position: absolute;
     bottom: 0;
-}
+    display: none;
+
+    .navbar-inverse{
+        background-color: transparent;
+        border-color: transparent;
+    }
 
     #bottomNav{
         background:rgba(49, 70, 91, 0.7);        
 
         .col-xs-4{
             border-left: 1px solid rgba(64, 89, 114, 0.7);;
-            padding-top: 8px;
-            padding-bottom: 8px;
+            padding: 0;
+            @include flexbox();
         }
 
         a{
-             color:#fff;
-             
-
+            width: 100%;
+            height: 100%;
+            padding-top: 8px;
+            padding-bottom: 4px;
+            border-bottom: 4px solid rgb(110, 125, 140);
+            color:#fff;
             &.active{                
                 color:#f3a117;
+                border-color: $orange;
  
                  .glyphicon{
                      font-size: 2rem;
-                //     height: 2rem;
-                //     width: 2rem;
-                //     border-radius:50%;
-                //     border:2px solid #fff;
-                //     padding-bottom: px;
-                 }
-                
+                 }            
+            }
 
+            &:hover{                
+                border-color: rgb(49, 70, 91);           
             }
         }
+    }
+}
 
-        
+//INCLUDE de una funcion en bootstrap-grid.scss
+    @include media-breakpoint-down(md){
+        #menuDesktop{
+            display: none;
+        }
+        #menuMobile{
+            display: block;
+        }
     }
 
