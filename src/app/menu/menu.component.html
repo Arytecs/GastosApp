@@ -19,13 +19,7 @@
                         </li>
                         <li>
                             <a routerLinkActive="active" routerLink="/prueba" >Prueba<span class="glyphicon glyphicon-heart pull-right"></span></a>
-                        </li>
-                        <li>
-                            <a>Like it? <span class="glyphicon glyphicon-star pull-right"></span></a>
-                        </li>
-                        <li>
-                            <a>Settings <span class="glyphicon glyphicon-cog pull-right"></span></a>
-                        </li>
+                        </li>                        
                         <li>
                             <a href="#">Log Out<span class="glyphicon glyphicon-log-out pull-right"></span></a>
                         </li>
@@ -40,7 +34,13 @@
             </div>
         </div>
         <div id="menuMobile">
-            hola
+            <div class="col-xs-12 navbar-inverse navbar-fixed-bottom">
+                <div class="row" id="bottomNav">
+                  <div class="col-xs-4 text-center"><a routerLinkActive="active" routerLink="/home"><i class="glyphicon glyphicon-home"></i></a></div>
+                  <div class="col-xs-4 text-center"><a routerLinkActive="active" routerLink="/prueba"><i class="glyphicon glyphicon-heart"></i></a></div>
+                  <div class="col-xs-4 text-center"><a href="#"><i class="glyphicon glyphicon-log-out"></i></a></div>
+                </div>
+                </div>
         </div>
 	</div>
 </div>
