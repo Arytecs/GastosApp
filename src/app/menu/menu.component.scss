@@ -94,7 +94,7 @@
     transition: padding-left 0.5s;
 }
 
-@media(max-width: 700px){
+@media(max-width: 767.98px){
     #menuDesktop{
         display: none;
     }
@@ -115,7 +115,7 @@
 #menuMobile{
     position: absolute;
     bottom: 0;
-    
+}
 
     #bottomNav{
         background:rgba(49, 70, 91, 0.7);        
@@ -132,9 +132,7 @@
 
             &.active{                
                 color:#f3a117;
-
-
-                // PRUEBA DE CIRCULO SIN SENTIDO    
+ 
                  .glyphicon{
                      font-size: 2rem;
                 //     height: 2rem;
@@ -151,4 +149,3 @@
         
     }
 
-}
