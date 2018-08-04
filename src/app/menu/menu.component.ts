@@ -11,9 +11,9 @@ export class MenuComponent implements OnInit {
 
   constructor() { }
 
-
+//Buscar toggle de angular.
   ngOnInit() {
-    $(".push_menu").click(function(){
+    $(".push_menu").click(() => {
       $(".wrapper").toggleClass("active");
  });
   }
