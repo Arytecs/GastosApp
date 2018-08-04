@@ -1,27 +1,22 @@
-<head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-</head> 
-<!------ Include the above in your HEAD tag ---------->
-
 <div class="container-fluid">
 	<div class="row">
-		<div class="wrapper" id="menuDesktop">
+		<div class="wrapper" id="menuDesktop" [ngClass]="statusMenu ? 'active' : ''">
     	    <div class="side-bar">
                 <ul>
                     <li class="menu-head">
-                        GastosAPP <a class="push_menu"><span class="glyphicon glyphicon-align-justify pull-right"></span></a>
+                        GastosAPP <a class="push_menu" (click)="toggleMenu()">
+                                <i class="oi oi-menu float-right"></i>
+                        </a>
                     </li>
                     <div class="menu">
                         <li>
-                            <a routerLinkActive="active" routerLink="/home">Home <i class="glyphicon glyphicon-home pull-right"></i></a>
+                            <a routerLinkActive="active" routerLink="/home">Home <i class="oi oi-home float-right"></i></a>
                         </li>
                         <li>
-                            <a routerLinkActive="active" routerLink="/prueba" >Prueba<i class="glyphicon glyphicon-heart pull-right"></i></a>
+                            <a routerLinkActive="active" routerLink="/prueba" >Prueba<i class="oi oi-cog float-right"></i></a>
                         </li>                        
                         <li>
-                            <a href="#">Log Out<i class="glyphicon glyphicon-log-out pull-right"></i></a>
+                            <a href="#">Log Out<i class="oi oi-power-standby float-right"></i></a>
                         </li>
                     </div>
                     
@@ -34,11 +29,11 @@
             </div>
         </div>
         <div id="menuMobile">
-            <div class="col-xs-12 navbar-inverse navbar-fixed-bottom">
+            <div class="col navbar-inverse navbar-fixed-bottom">
                 <div class="row" id="bottomNav">
-                  <div class="col-xs-4 text-center"><a routerLinkActive="active" routerLink="/home"><i class="glyphicon glyphicon-home"></i></a></div>
-                  <div class="col-xs-4 text-center"><a routerLinkActive="active" routerLink="/prueba"><i class="glyphicon glyphicon-heart"></i></a></div>
-                  <div class="col-xs-4 text-center"><a href="#"><i class="glyphicon glyphicon-log-out"></i></a></div>
+                  <div class="col text-center"><a routerLinkActive="active" routerLink="/home"><i class="oi oi-home"></i></a></div>
+                  <div class="col text-center"><a routerLinkActive="active" routerLink="/prueba"><i class="oi oi-cog"></i></a></div>
+                  <div class="col text-center"><a href="#"><i class="oi oi-power-standby"></i></a></div>
                 </div>
             </div>
         </div>
