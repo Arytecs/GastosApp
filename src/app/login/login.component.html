@@ -1,17 +1,13 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
 <div class="container-fluid h-100 fondologin">
     <div class="row justify-content-md-center">
-      <div class="jumbotron col-xs-10 col-md-6 col-lg-4 sombra">
+      <div class="jumbotron col-10 col-md-6 col-lg-4 align-self-center sombra">
         <div class="text-center">
               <h3 class="blanco titulo">Iniciar sesión</h3>         
             <form class="login" (keydown)="keyDownLogin($event, name, pass)">
               <div class="input-group mb-3">   
                 <input type="text" class="form-control-plaintext blanco" placeholder="Usuario" name="name" [(ngModel)]="name">
                 <span class="input-group-addon spanIcon">
-                  <i class="glyphicon glyphicon-user iconlogin blanco" id="icono"></i>
+                  <i class="oi oi-person iconlogin blanco" id="icono"></i>
                 </span>
               
               </div>
@@ -20,7 +16,7 @@
               <div class="input-group mb-3" style="margin-bottom: 4rem !important;">
                 <input type="password" class="form-control-plaintext blanco" placeholder="Contraseña" name="pass" [(ngModel)]="pass">
                 <span class="input-group-addon spanIcon">
-                  <i class="glyphicon glyphicon-lock iconlogin blanco" id="icono"></i>
+                  <i class="oi oi-lock-locked iconlogin blanco" id="icono"></i>
                 </span>
               </div>
     

@@ -8,14 +8,15 @@ import{RouterModule, Routes} from '@angular/router';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-
+  statusMenu: boolean = false;
   constructor() { }
 
-
+//Buscar toggle de angular.
   ngOnInit() {
-    $(".push_menu").click(function(){
-      $(".wrapper").toggleClass("active");
- });
+  }
+
+  public toggleMenu() {
+    this.statusMenu = !this.statusMenu;
   }
 
 }
