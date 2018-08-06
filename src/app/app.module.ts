@@ -21,7 +21,8 @@ const appRoutes: Routes = [
   {path: 'home', component:HomeComponent},
   {path: 'prueba', component: PruebaComponent},
   {path: 'config', component: ConfigComponent},
-  {path: 'add', component: DataComponent}
+  {path: 'add', component: DataComponent},
+  {path: '**', component: LoginComponent}
 ]
 
 
