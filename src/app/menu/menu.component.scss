@@ -7,7 +7,7 @@
 
 .side-bar 
 {
-    background:$greyMenu;
+    background:$primaryGrey;
     position:absolute;
     height:100%;
     width:200px;
@@ -53,7 +53,7 @@
 
             &.active{
                 padding-left:17px;
-                background: $orange;
+                background: $primaryOrange;
                 border-left:3px solid #ECECEA;
 
                 &:before{
@@ -64,7 +64,7 @@
                     border-top: 20px solid transparent;
                      border-bottom: 20px solid transparent;
                      
-                     border-left: 7px solid $orange;
+                     border-left: 7px solid $primaryOrange;
                      margin-top: -10px;
                      margin-left: 180px;
                 }
@@ -106,10 +106,10 @@
     }
 
     #bottomNav{
-        background:$greyMenu;        
+        background:$primaryGrey;        
 
         .col-xs-4{
-            border-left: 1px solid $greyBorder;
+            border-left: 1px solid $secondaryGrey;
             padding: 0;
             @include flexbox();
         }
@@ -119,11 +119,11 @@
             height: 100%;
             padding-top: 8px;
             padding-bottom: 4px;
-            border-bottom: 4px solid $greyBorder;
+            border-bottom: 4px solid $secondaryGrey;
             color:#fff;
             &.active{                
-                color:$orange;
-                border-color: $orange;
+                color:$primaryOrange;
+                border-color: $primaryOrange;
  
                  .glyphicon{
                      font-size: 2rem;
@@ -131,7 +131,7 @@
             }
 
             &:hover{                
-                border-color: $greyBorderBottom;           
+                border-color: $thirdGrey;           
             }
         }
     }
