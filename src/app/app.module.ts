@@ -12,12 +12,17 @@ import { LogginService } from 'src/app/loggin.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { PruebaComponent } from './prueba/prueba.component';
+import { ConfigComponent } from './menu/config/config.component';
+import { DataComponent } from './menu/data/data.component';
 
 
 const appRoutes: Routes = [
   {path: '', component:LoginComponent},
   {path: 'home', component:HomeComponent},
-  {path: 'prueba', component: PruebaComponent}
+  {path: 'prueba', component: PruebaComponent},
+  {path: 'config', component: ConfigComponent},
+  {path: 'add', component: DataComponent},
+  {path: '**', component: LoginComponent}
 ]
 
 
@@ -28,7 +33,9 @@ const appRoutes: Routes = [
     LoginComponent,
     HomeComponent,
     MenuComponent,
-    PruebaComponent
+    PruebaComponent,
+    ConfigComponent,
+    DataComponent
   ],
   imports: [
     BrowserModule,
