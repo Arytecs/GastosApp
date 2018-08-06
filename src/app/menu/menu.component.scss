@@ -7,7 +7,7 @@
 
 .side-bar 
 {
-    background:rgba(49, 70, 91, 0.7);
+    background:$greyMenu;
     position:absolute;
     height:100%;
     width:200px;
@@ -64,7 +64,7 @@
                     border-top: 20px solid transparent;
                      border-bottom: 20px solid transparent;
                      
-                     border-left: 7px solid #D9853B;
+                     border-left: 7px solid $orange;
                      margin-top: -10px;
                      margin-left: 180px;
                 }
@@ -106,10 +106,10 @@
     }
 
     #bottomNav{
-        background:rgba(49, 70, 91, 0.7);        
+        background:$greyMenu;        
 
         .col-xs-4{
-            border-left: 1px solid rgba(64, 89, 114, 0.7);;
+            border-left: 1px solid $greyBorder;
             padding: 0;
             @include flexbox();
         }
@@ -119,10 +119,10 @@
             height: 100%;
             padding-top: 8px;
             padding-bottom: 4px;
-            border-bottom: 4px solid rgb(110, 125, 140);
+            border-bottom: 4px solid $greyMenu;
             color:#fff;
             &.active{                
-                color:#f3a117;
+                color:$orange;
                 border-color: $orange;
  
                  .glyphicon{
