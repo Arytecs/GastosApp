@@ -1,0 +1,50 @@
+@import "../../../css/_flexbox.scss";
+@import "../../../css/_variables.scss";
+
+main{
+    height: 100%;
+    padding: 1rem;
+    margin-bottom: 40px;
+    margin-left: -30px;
+    font-size: 12px;
+
+        #userAvatar{        
+            
+            img{
+                height: auto;
+                width: 30%;
+            }
+        }
+
+    #cuentasUser{     
+
+        .btn{
+            color: black;           
+            background: transparent;
+        }
+
+        #newAccount{              
+            #name{
+                margin-bottom: 7px;
+            }
+            .btn{
+                float: right;
+            }
+        }
+
+        #AccountsList{                       
+            padding: 5px;
+            width: 75px;
+            justify-content: center;
+
+            p{
+                word-wrap: break-word;
+                text-align: center;
+            }
+            #AccImg{                
+                max-width: 50px;
+                max-height: 50px;
+            }
+        }
+    }
+}

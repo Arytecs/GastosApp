@@ -1,10 +1,51 @@
 <div class="row" style="margin-left: 0px; margin-right: 0px;">
-
-
   <app-menu></app-menu>
-
-  
-    <p>
-      config works
-    </p>
+  <main role="main" class="col">
+    <div id="datosUser" class="boxContainer shadow">
+      <div class="row">
+        <div class="col" id="userAvatar">
+          <img src="\assets\userAvatar.jpg">
+          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+        <div class="col">
+          <h3>Nombre Usuario</h3>
+          <h4>Edad: 27</h4>
+          <form>
+            <div class="form-group">
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ejemplo@gastosapp.com">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="cuentasUser" class="boxContainer shadow">
+      <div class="row">
+        <h3>Accounts</h3>
+          <button id="AddBtn" class="btn btn-primmary" (click)="ngxSmartModalService.getModal('myModal').open()"><i class="oi oi-plus"></i></button>
+          
+          
+      </div>      
+      <ngx-smart-modal #myModal identifier="myModal">
+          <h1>Add Account</h1>
+          <div id="newAccount">
+            <input type="name" id="name" class="form-control" [(ngModel)]="accountName" name="name" placeholder="Account name">          
+            <button type="button" class="btn" (click)="AddAccount(accountName)">Add</button>
+          </div>                  
+        </ngx-smart-modal>
+      <div class="row">        
+          <div id="AccountsList" *ngFor="let account of accounts">
+            <img src="/assets/AccountImg.jpg" id="AccImg">
+            <p>{{ account.name }}</p>
+          </div>      
+      </div>
+    </div>
+    <div id="categoriasUser" class="boxContainer shadow">
+      <div>
+        <div class="row">
+          <h3>Categories</h3>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
