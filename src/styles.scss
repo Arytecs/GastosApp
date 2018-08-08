@@ -1,15 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~ngx-smart-modal/ngx-smart-modal";
+@import "/css/_variables.scss";
+
 *{
     
 font-family: 'Montserrat', sans-serif;
+font-size: 14px;
 }
+
 
 body{
     height: 100%;
-    width: 100%;
-    position: absolute;
+    width: 100%;    
+    margin-bottom: 30px;
 }
 
 .sombra{
     box-shadow: 0 70px 20px -30px rgba(0, 0, 0, 0.77) !important;
+}
+
+.boxContainer{
+    padding: 2rem;  
+    border: 1px solid $detailsGrey;
+    margin: 1rem;
 }

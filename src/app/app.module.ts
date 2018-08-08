@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import{RouterModule, Routes} from '@angular/router';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { PruebaComponent } from './prueba/prueba.component';
 import { ConfigComponent } from './menu/config/config.component';
 import { DataComponent } from './menu/data/data.component';
+
 
 
 const appRoutes: Routes = [
@@ -39,6 +41,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    NgxSmartModalModule.forChild(),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
