@@ -1,0 +1,84 @@
+@import "../../../css/_flexbox.scss";
+@import "../../../css/_variables.scss";
+
+main{
+    height: 100%;
+    padding: 1rem;
+    margin-bottom: 40px;
+    margin-left: -30px;
+    font-size: 12px;
+
+    .addBtn{
+        width: 50px;
+        height: 50px;
+        background-color: white;
+        border-radius: 50%;
+
+        &:hover{
+            background-color: $detailsGreen;
+            
+            i{
+                color: white;
+            }
+        }
+
+        i{
+            color: $detailsGreen;
+        }
+    }
+
+    #userAvatar{        
+            
+        img{
+            height: auto;
+            width: 30%;
+            }
+        }
+
+    #cuentasUser{     
+
+        .modalBtn{
+            color: black;           
+            background: transparent;
+        }
+
+        #newAccount{              
+            #name{
+                margin-bottom: 7px;
+            }
+            .btn{                
+                float: right;
+            }
+        }
+
+        #AccountsList{                       
+            padding: 5px;
+            justify-content: center;
+            @include flexbox();
+            
+            div{
+                margin-right: 5px;
+            }
+
+            .btn{
+                padding: 0;
+            }
+            p{
+                word-wrap: break-word;
+                text-align: center;
+            }
+            #AccImg{                
+                width: 50px;
+                height: 50px;
+            }
+        }
+    }
+
+    #categoriasUser{
+
+        #categoriesList{
+            padding: 6px;
+        }
+        
+    }
+}

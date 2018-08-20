@@ -1,0 +1,75 @@
+<div class="row" style="margin-left: 0px; margin-right: 0px;">
+  <app-menu></app-menu>
+  <main role="main" class="col">
+    <div id="datosUser" class="boxContainer shadow">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <h4>Nombre Usuario</h4>
+          <h4>email@gastosapp.com</h4>
+        </div>
+        <div class="col-xs-12 col-md-6" id="userAvatar">
+          <img src="\assets\userAvatar.jpg">
+          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>  
+      </div>
+    </div>
+    <div id="cuentasUser" class="boxContainer shadow">
+      <div class="row">
+        <h4>Accounts</h4>                             
+      </div>            
+      <ngx-smart-modal #myModal identifier="myModal">
+        <h3>Add Account</h3>
+        <div id="newAccount">
+          <input autofocus type="name" id="name" class="form-control" [(ngModel)]="accountName" name="name" placeholder="Account name" required>          
+          <button type="button" class="btn btn-primary modalBtn" (click)="addAccount(accountName)">Add</button>
+        </div>                  
+      </ngx-smart-modal>
+      <div class="row">        
+        <div id="AccountsList">
+          <div  *ngFor="let account of accounts; let i = index">
+              <button  class="btn modalBtn" (click)="modifyAccount(i)"><img src="/assets/AccountImg.jpg" id="AccImg"></button> 
+              <p>{{ account.name }}</p>
+          </div> 
+          <button class="btn btn-outline-success addBtn" (click)="ngxSmartModalService.getModal('myModal').open();"><i class="oi oi-plus"></i></button>   
+        </div>     
+      </div>
+      <ngx-smart-modal #myAcc identifier="myAcc">
+        <h3>{{ accountToModify.name }}</h3>           
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" [(ngModel)]="newname" name="newname" placeholder="Change Name" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" (click)="saveAccount(newname,myAcc.getData().index)">Change</button>
+          </div>
+        </div>  
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" [(ngModel)]="shareto" name="shareto" placeholder="Share with example@email.com" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Share</button>
+          </div>
+        </div>       
+        <button type="button" class="btn btn-primary">Delete</button>                  
+      </ngx-smart-modal>
+    </div>
+    <div id="categoriasUser" class="boxContainer shadow">
+      <div class="row">
+        <h4>Categories</h4>
+        <ngx-smart-modal #myCate identifier="myCate">
+          <h3>Add Category</h3>
+          <div id="newAccount">
+            <input type="name" id="name" class="form-control" [(ngModel)]="categoryName" name="categoryName" placeholder="Category name">
+            <select class="form-control"  id="power" [(ngModel)]="newFather" name="newFather">
+              <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
+            </select>                        
+            <button type="button" class="btn btn-primary" (click)="addCategory(categoryName,'newid',newFather)">Add</button>
+          </div>                  
+        </ngx-smart-modal>
+      </div>
+      <button type="button" class="btn btn-outline-success addBtn" (click)="ngxSmartModalService.getModal('myCate').open();"><i class="oi oi-plus"></i></button>
+      <div class="row">
+        <div *ngFor="let category of categories; let i = index" id="categoriesList">
+          <button type="button" class="btn btn-outline-success">{{ category.name }}</button>
+        </div>
+      </div>        
+    </div>
+  </main>
+</div>
