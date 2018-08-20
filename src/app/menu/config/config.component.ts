@@ -16,7 +16,7 @@ export class ConfigComponent implements OnInit {
   public accountName: string;
   public categoryName: string;
   public categoryId: string;
-  public categories: Category[] = [
+  public categories: Category[] = [    
     new Category("Alimentación","1","father"),
     new Category("Ingresos","2","father"),
     new Category("Facturas","3","father"),
@@ -29,7 +29,12 @@ export class ConfigComponent implements OnInit {
   }
   
   saveAccount(newname: string, index : number){
-    this.accounts[index].name= newname;
+    this.accounts[index].name= newname;    
+  }
+
+  deleteAccount(index : number){
+    this.accounts.splice(index,1);
+    this.ngxSmartModalService.getModal('myAcc').close();
   }
 
   constructor(public ngxSmartModalService: NgxSmartModalService) { }
@@ -48,11 +53,20 @@ export class ConfigComponent implements OnInit {
   }
 
   addCategory(categoryName: string, categoryId: string, father: Category){
-    console.log(categoryName);
-    console.log(categoryId);
-    console.dir(father);
     this.categories.push(new Category(categoryName, categoryId , father.id));
     this.categoryName = "";
+  }
+
+  public keyDownAcc(event, nombre:string){
+    if(event.keyCode == 13) {
+      this.addAccount(nombre);
+    }
+  }
+
+  public keyDownCat(event, categoryName: string, categoryId: string, newFather: Category){
+    if(event.keyCode == 13) {
+      this.addCategory(categoryName, categoryId, newFather);
+    }
   }
 
 }

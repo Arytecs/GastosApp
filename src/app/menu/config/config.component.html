@@ -19,9 +19,11 @@
       </div>            
       <ngx-smart-modal #myModal identifier="myModal">
         <h3>Add Account</h3>
-        <div id="newAccount">
-          <input autofocus type="name" id="name" class="form-control" [(ngModel)]="accountName" name="name" placeholder="Account name" required>          
-          <button type="button" class="btn btn-primary modalBtn" (click)="addAccount(accountName)">Add</button>
+        <div id="newAccount"> 
+          <form class="login" (keydown)="keyDownAcc($event, accountName)">
+            <input autofocus type="name" id="name" class="form-control" [(ngModel)]="accountName" name="name" placeholder="Account name" required>          
+            <button type="button" class="btn btn-primary modalBtn" (click)="addAccount(accountName)">Add</button>
+          </form>
         </div>                  
       </ngx-smart-modal>
       <div class="row">        
@@ -47,7 +49,7 @@
             <button class="btn btn-outline-secondary" type="button">Share</button>
           </div>
         </div>       
-        <button type="button" class="btn btn-primary">Delete</button>                  
+        <button type="button" class="btn btn-danger modalBtn" (click)="deleteAccount(myAcc.getData().index)">Delete</button>                  
       </ngx-smart-modal>
     </div>
     <div id="categoriasUser" class="boxContainer shadow">
@@ -55,16 +57,18 @@
         <h4>Categories</h4>
         <ngx-smart-modal #myCate identifier="myCate">
           <h3>Add Category</h3>
-          <div id="newAccount">
-            <input type="name" id="name" class="form-control" [(ngModel)]="categoryName" name="categoryName" placeholder="Category name">
-            <select class="form-control"  id="power" [(ngModel)]="newFather" name="newFather">
-              <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
-            </select>                        
-            <button type="button" class="btn btn-primary" (click)="addCategory(categoryName,'newid',newFather)">Add</button>
+          <div id="newCategory">
+              <form class="login" (keydown)="keyDownCat($event, categoryName, 'newid', newFather)">
+                <input autofocus type="name" id="name" class="form-control" [(ngModel)]="categoryName" name="categoryName" placeholder="Category name" required>
+                <select class="form-control"  id="father" [(ngModel)]="newFather" name="newFather" aria-placeholder="Selec Category">
+                  <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
+                </select>                        
+                <button type="button" class="btn btn-primary modalBtn" (click)="addCategory(categoryName,'newid',newFather)">Add</button>
+              </form>
           </div>                  
         </ngx-smart-modal>
       </div>
-      <button type="button" class="btn btn-outline-success addBtn" (click)="ngxSmartModalService.getModal('myCate').open();"><i class="oi oi-plus"></i></button>
+      <button type="button" id="addCategory" class="btn btn-outline-success addBtn" (click)="ngxSmartModalService.getModal('myCate').open();"><i class="oi oi-plus"></i></button>
       <div class="row">
         <div *ngFor="let category of categories; let i = index" id="categoriesList">
           <button type="button" class="btn btn-outline-success">{{ category.name }}</button>
