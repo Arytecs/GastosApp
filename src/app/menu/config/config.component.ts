@@ -3,6 +3,7 @@ import { Account } from '../../models/account.model';
 import {Category } from '../../models/category.model';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { NgModel } from '@angular/forms';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-config',
@@ -14,6 +15,7 @@ export class ConfigComponent implements OnInit {
   public accountToModify = new Account('');
   public newname: string;
   public accountName: string;
+  public emailToShare: string;
   public categoryName: string;
   public categoryId: string;
   public categories: Category[] = [    
@@ -22,14 +24,19 @@ export class ConfigComponent implements OnInit {
     new Category("Facturas","3","father"),
     new Category("Transporte","4","father"),];
   
+  public users : User[] = [
+    new User("Victor","1234","victorcm34@gastosapp.com","../../src/assets/userAvatar.jpg")
+  ];  
+  public confirm: boolean = false;
+  
   addAccount(accountName: string){
     this.accounts.push(new Account(accountName));
-    this.ngxSmartModalService.getModal('myModal').close();
+    this.ngxSmartModalService.getModal('addAcc').close();
     this.accountName = "";
   }
   
   saveAccount(newname: string, index : number){
-    this.accounts[index].name= newname;    
+      this.accounts[index].name= newname;      
   }
 
   deleteAccount(index : number){
@@ -40,6 +47,12 @@ export class ConfigComponent implements OnInit {
   constructor(public ngxSmartModalService: NgxSmartModalService) { }
 
   ngOnInit() {
+  }
+
+  doAcction(doAcction: boolean){  
+    this.confirm = doAcction
+    this.ngxSmartModalService.getModal('confirm').close();
+    return confirm;
   }
 
   modifyAccount(i:number){
@@ -55,6 +68,18 @@ export class ConfigComponent implements OnInit {
   addCategory(categoryName: string, categoryId: string, father: Category){
     this.categories.push(new Category(categoryName, categoryId , father.id));
     this.categoryName = "";
+  }
+
+  shareAccount(emailToShare: string, index: number){
+    this.accounts[index].shared.push(emailToShare);
+    console.log(emailToShare);
+    console.log(this.accounts[index].shared)
+    const obj: Object = {
+      i: index
+    }
+    this.ngxSmartModalService.setModalData(obj, 'myAcc');
+    this.emailToShare= "";
+    this.ngxSmartModalService.getModal('myAcc').open();
   }
 
   public keyDownAcc(event, nombre:string){

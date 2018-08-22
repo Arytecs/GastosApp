@@ -4,8 +4,8 @@
     <div id="datosUser" class="boxContainer shadow">
       <div class="row">
         <div class="col-xs-12 col-md-6">
-          <h4>Nombre Usuario</h4>
-          <h4>email@gastosapp.com</h4>
+          <h4>{{ users[0].name }}</h4>
+          <h4>{{ users[0].email }}</h4>
         </div>
         <div class="col-xs-12 col-md-6" id="userAvatar">
           <img src="\assets\userAvatar.jpg">
@@ -15,58 +15,44 @@
     </div>
     <div id="cuentasUser" class="boxContainer shadow">
       <div class="row">
-        <h4>Accounts</h4>                             
-      </div>            
-      <ngx-smart-modal #myModal identifier="myModal">
-        <h3>Add Account</h3>
-        <div id="newAccount"> 
-          <form class="login" (keydown)="keyDownAcc($event, accountName)">
-            <input autofocus type="name" id="name" class="form-control" [(ngModel)]="accountName" name="name" placeholder="Account name" required>          
-            <button type="button" class="btn btn-primary modalBtn" (click)="addAccount(accountName)">Add</button>
-          </form>
-        </div>                  
-      </ngx-smart-modal>
+        <h4>Cuentas</h4>                             
+      </div>                  
       <div class="row">        
         <div id="AccountsList">
           <div  *ngFor="let account of accounts; let i = index">
-              <button  class="btn modalBtn" (click)="modifyAccount(i)"><img src="/assets/AccountImg.jpg" id="AccImg"></button> 
-              <p>{{ account.name }}</p>
+            <button  class="btn" (click)="modifyAccount(i)"><img src="/assets/AccountImg.jpg" id="AccImg"></button> 
+            <p>{{ account.name }}</p>
+            <!-- Modal que modifica y comparte las cuentas -->
+            <ngx-smart-modal #myAcc identifier="myAcc">
+                <header class="modalHeader">
+                  <h3>{{ accountToModify.name }}</h3> 
+                </header>
+                <body class="modalBody">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" [(ngModel)]="newname" name="newname" placeholder="Nuevo nombre" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button" (click)="saveAccount(newname, myAcc.getData().index)">Cambiar</button>
+                    </div>
+                  </div>  
+                  <div class="input-group mb-3">
+                    <input type="email" class="form-control" [(ngModel)]="shareto" name="shareto" placeholder="Compartir con ejemplo@email.com" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button" (click)="shareAccount(shareto, myAcc.getData().index)">Compartir</button>
+                    </div>
+                  </div> 
+                  </body>
+                  <footer class="modalFooter">
+                    <button type="button" class="btn modalBtn" (click)="deleteAccount(myAcc.getData().index)">Borrar</button>                  
+                  </footer>                               
+              </ngx-smart-modal>
           </div> 
-          <button class="btn btn-outline-success addBtn" (click)="ngxSmartModalService.getModal('myModal').open();"><i class="oi oi-plus"></i></button>   
+          <button class="btn btn-outline-success addBtn" (click)="ngxSmartModalService.getModal('addAcc').open();"><i class="oi oi-plus"></i></button>   
         </div>     
-      </div>
-      <ngx-smart-modal #myAcc identifier="myAcc">
-        <h3>{{ accountToModify.name }}</h3>           
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" [(ngModel)]="newname" name="newname" placeholder="Change Name" aria-label="Recipient's username" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" (click)="saveAccount(newname,myAcc.getData().index)">Change</button>
-          </div>
-        </div>  
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" [(ngModel)]="shareto" name="shareto" placeholder="Share with example@email.com" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Share</button>
-          </div>
-        </div>       
-        <button type="button" class="btn btn-danger modalBtn" (click)="deleteAccount(myAcc.getData().index)">Delete</button>                  
-      </ngx-smart-modal>
+      </div>      
     </div>
     <div id="categoriasUser" class="boxContainer shadow">
       <div class="row">
-        <h4>Categories</h4>
-        <ngx-smart-modal #myCate identifier="myCate">
-          <h3>Add Category</h3>
-          <div id="newCategory">
-              <form class="login" (keydown)="keyDownCat($event, categoryName, 'newid', newFather)">
-                <input autofocus type="name" id="name" class="form-control" [(ngModel)]="categoryName" name="categoryName" placeholder="Category name" required>
-                <select class="form-control"  id="father" [(ngModel)]="newFather" name="newFather" aria-placeholder="Selec Category">
-                  <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
-                </select>                        
-                <button type="button" class="btn btn-primary modalBtn" (click)="addCategory(categoryName,'newid',newFather)">Add</button>
-              </form>
-          </div>                  
-        </ngx-smart-modal>
+        <h4>Categorias</h4>        
       </div>
       <button type="button" id="addCategory" class="btn btn-outline-success addBtn" (click)="ngxSmartModalService.getModal('myCate').open();"><i class="oi oi-plus"></i></button>
       <div class="row">
@@ -77,3 +63,59 @@
     </div>
   </main>
 </div>
+
+<!-- Modal que añade cuentas -->
+<ngx-smart-modal #addAcc identifier="addAcc" class="appModal">
+  <header class="modalHeader">
+    <h3>Añadir cuenta</h3>
+  </header>
+  <body class="modalBody">
+    <div id="newAccount"> 
+      <form class="login" (keydown)="keyDownAcc($event, accountName)">
+        <input autofocus type="name" id="name" class="form-control" [(ngModel)]="accountName" name="name" placeholder="Nombre de cuenta" required>                            
+      </form>
+    </div> 
+  </body>
+  <footer class="modalFooter">
+    <div>
+      <button type="button" class="btn btn-primary modalBtn" (click)="addAccount(accountName)">Añadir</button>
+    </div>          
+  </footer>                                 
+</ngx-smart-modal>
+
+
+
+<!-- Modal que añade categorias -->
+<ngx-smart-modal #myCate identifier="myCate">
+  <header class="modalHeader">
+    <h3>Añadir categoria</h3>
+  </header>
+  <body class="modalBody">
+    <div id="newCategory">
+      <form class="login" (keydown)="keyDownCat($event, categoryName, 'newid', newFather)">
+        <input autofocus type="name" id="name" class="form-control" [(ngModel)]="categoryName" name="categoryName" placeholder="Nombre categoria" required>
+        <select class="form-control"  id="father" [(ngModel)]="newFather" name="newFather" aria-placeholder="Selec Category">
+          <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
+        </select>                                            
+      </form>
+    </div>
+  </body>
+  <footer class="modalFooter">
+    <button type="button" class="btn btn-primary modalBtn" (click)="addCategory(categoryName,'newid',newFather)">Add</button>
+  </footer>
+</ngx-smart-modal>
+
+<!-- Modal de confirmacion de acciones -->
+<ngx-smart-modal #confirm identifier="confirm">
+    <header class="modalHeader">
+      <h3>ATENCIÓN</h3>
+    </header>
+    <body class="modalBody">
+        <p>¿Estás seguro?</p>   
+    </body>
+    <footer class="modalFooter">
+          <button type="button" class="btn btn-primary modalBtn" (click)="doAcction('true')">Si</button>
+          <button type="button" class="btn btn-danger modalBtn" (click)="doAcction('false')">No</button> 
+    </footer>
+  </ngx-smart-modal>
+  

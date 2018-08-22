@@ -8,10 +8,7 @@ main{
     margin-left: -30px;
     font-size: 12px;
 
-    .modalBtn{
-        color: black;           
-        background: transparent;
-    }
+    
 
     .addBtn{
         width: 50px;
@@ -48,21 +45,26 @@ main{
             #name{
                 margin-bottom: 7px;
             }
-            .btn{                
-                float: right;
-            }
+            
         }
 
+        .btn{                
+            float: right;
+        }    
+
         #AccountsList{                       
-            padding: 5px;
+            padding: 6px;
             justify-content: center;
             @include flexbox();
             
+            .addBtn{
+                margin-top: 5px;
+            }
             div{
                 margin-right: 5px;
             }
 
-            .btn{
+            .btn-outline-secondary{
                 padding: 0;
             }
             p{
@@ -98,5 +100,45 @@ main{
             }
         }
         
+    }
+}
+
+.modalBtn{
+    color: white;           
+    background: $primaryOrange;
+    border-color: transparent;
+}
+
+.modalHeader{
+    border-bottom: 2px solid $secondaryGrey;
+    color: white;
+    background-color: $primaryGrey;
+    margin-bottom: 10px;
+    margin-top: -14px;
+    margin-left: -14px;
+    margin-right: -14px;
+    padding: 10px;
+    
+    h3{
+        padding-left: 20px;
+    }
+}
+
+.modalBody{
+    padding: 1rem;
+
+    .btn-outline-secondary{
+        min-width: 80px;
+    }
+    select{
+        margin-top: 1rem;
+    }
+}
+
+.modalFooter{
+    .btn{
+        float: right;
+        margin-left: 10px;
+        min-width: 45px;
     }
 }
