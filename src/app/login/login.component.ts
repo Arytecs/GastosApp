@@ -11,28 +11,25 @@ import { Usuario } from '../usuario.model';
 })
 export class LoginComponent implements OnInit {
 
-
- 
-
-  user:Usuario;
+  user: Usuario;
   constructor(private logginService: LogginService, private router: Router) { }
 
 
   ngOnInit() {
   }
 
-  public loggear(nombre:string, password:string){
-    this.user = new Usuario(nombre, password)
+  public loggear(nombre: string, password: string) {
+    this.user = new Usuario(nombre, password);
     this.logginService.getAll(this.user.name, this.user.pass).subscribe(data => {
-      if(data.id==1){
+      if (data.id === 1) {
         this.router.navigate(['/home']);
       }
     });
   }
 
-  public keyDownLogin(event, nombre:string, password:string){
-    if(event.keyCode == 13) {
-      this.loggear(name, password)
+  public keyDownLogin(event, nombre: string, password: string) {
+    if (event.keyCode === 13) {
+      this.loggear(name, password);
     }
   }
 }

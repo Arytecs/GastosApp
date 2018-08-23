@@ -17,19 +17,19 @@ export class ConfigComponent implements OnInit {
   public categoryName: string;
   public categoryId: string;
   public categories: Category[] = [
-    new Category("Alimentación","1","father"),
-    new Category("Ingresos","2","father"),
-    new Category("Facturas","3","father"),
-    new Category("Transporte","4","father"),];
-  
-  addAccount(accountName: string){
+    new Category('Alimentación', '1', 'father'),
+    new Category('Ingresos', '2', 'father'),
+    new Category('Facturas', '3', 'father'),
+    new Category('Transporte', '4', 'father'), ];
+
+  addAccount(accountName: string) {
     this.accounts.push(new Account(accountName));
     this.ngxSmartModalService.getModal('myModal').close();
-    this.accountName = "";
+    this.accountName = '';
   }
-  
-  saveAccount(newname: string, index : number){
-    this.accounts[index].name= newname;
+
+  saveAccount(newname: string, index: number) {
+    this.accounts[index].name = newname;
   }
 
   constructor(public ngxSmartModalService: NgxSmartModalService) { }
@@ -37,22 +37,22 @@ export class ConfigComponent implements OnInit {
   ngOnInit() {
   }
 
-  modifyAccount(i:number){
+  modifyAccount(i: number) {
     this.accountToModify = this.accounts[i];
     const obj: Object = {
       index: i
-    }
+    };
     this.ngxSmartModalService.setModalData(obj, 'myAcc');
-    this.newname = "";
-    this.ngxSmartModalService.getModal('myAcc').open()
+    this.newname = '';
+    this.ngxSmartModalService.getModal('myAcc').open();
   }
 
-  addCategory(categoryName: string, categoryId: string, father: Category){
+  addCategory(categoryName: string, categoryId: string, father: Category) {
     console.log(categoryName);
     console.log(categoryId);
     console.dir(father);
     this.categories.push(new Category(categoryName, categoryId , father.id));
-    this.categoryName = "";
+    this.categoryName = '';
   }
 
 }
