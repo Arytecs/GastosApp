@@ -8,7 +8,7 @@
           <h4>{{ users[0].email }}</h4>
         </div>
         <div class="col-xs-12 col-md-6" id="userAvatar">
-          <img src="\assets\userAvatar.jpg">
+          <img [src]= "users[0].avatar">
           <input type="file" class="form-control-file" id="exampleFormControlFile1">
         </div>  
       </div>
@@ -19,7 +19,7 @@
       </div>                  
       <div class="row">        
         <div id="AccountsList">
-          <div  *ngFor="let account of accounts; let i = index">
+          <div class="accountItem" *ngFor="let account of accounts; let i = index">
             <button  class="btn" (click)="modifyAccount(i)"><img src="/assets/AccountImg.jpg" id="AccImg"></button> 
             <p>{{ account.name }}</p>
             <!-- Modal que modifica y comparte las cuentas -->
@@ -31,16 +31,21 @@
                   <div class="input-group mb-3">
                     <input type="text" class="form-control" [(ngModel)]="newname" name="newname" placeholder="Nuevo nombre" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" (click)="saveAccount(newname, myAcc.getData().index)">Cambiar</button>
+                      <button class="btn btn-outline-secondary" type="button" (click)="saveAccount(myAcc.getData().index)">Cambiar</button>
                     </div>
                   </div>  
                   <div class="input-group mb-3">
-                    <input type="email" class="form-control" [(ngModel)]="shareto" name="shareto" placeholder="Compartir con ejemplo@email.com" aria-describedby="basic-addon2">
+                    <input type="email" class="form-control" [(ngModel)]="shareTo" name="shareTo" placeholder="Compartir con ejemplo@email.com" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" (click)="shareAccount(shareto, myAcc.getData().index)">Compartir</button>
+                      <button class="btn btn-outline-secondary" type="button" (click)="shareAccount(myAcc.getData().index)">Compartir</button>
                     </div>
                   </div> 
-                  </body>
+                  <div class="sharedItem" *ngFor= "let shared of accountToModify.shared ; let i = index"> 
+                    <img class="roundedImg" [src]="accountToModify.shared[i].avatar" /> 
+                    <span class="sharedEmail">{{ accountToModify.shared[i].email}}</span>
+                    <button class="oi oi-x xBtnModal" (click)="deleteShared(myAcc.getData().index)"></button>
+                  </div>
+                </body>
                   <footer class="modalFooter">
                     <button type="button" class="btn modalBtn" (click)="deleteAccount(myAcc.getData().index)">Borrar</button>                  
                   </footer>                               
