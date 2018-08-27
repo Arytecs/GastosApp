@@ -1,0 +1,29 @@
+@import '../../../css/_flexbox.scss';
+@import '../../../css/_variables.scss';
+
+main {
+  h4 {
+    margin-bottom: 20px;
+  }
+  .dataForm {
+    @include flexbox();
+    flex-wrap: wrap;
+
+    input {
+      margin-bottom: 10px;
+    }
+    select {
+      margin-bottom: 10px;
+    }
+    #dataAmount {
+      margin-right: 5rem;
+    }
+  }
+  .formBtn {
+    color: white;
+    background: $primaryOrange;
+    border-color: transparent;
+    @include justify-content(right);
+    margin-top: 30px;
+  }
+}

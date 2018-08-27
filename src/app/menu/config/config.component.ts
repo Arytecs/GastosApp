@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Account } from '../../models/account.model';
 import { Category } from '../../models/category.model';
 import { NgxSmartModalService } from 'ngx-smart-modal';
@@ -36,7 +36,7 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
   }
 
   saveAccount(index: number) {
-    this.accounts[index].name = this.newname;
+    this.accountToModify.name = this.newname;
     this.newname = '';
   }
 
@@ -73,7 +73,7 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
   }
 
   shareAccount(index: number) {
-    this.accounts[index].shared.push(new User('Araceli', '1234', this.shareTo, './assets/userAvatar.jpg'));
+    this.accountToModify.shared.push(new User('Araceli', '1234', this.shareTo, './assets/userAvatar.jpg'));
     this.shareTo = '';
   }
 
