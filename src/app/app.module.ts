@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import{RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 import { AppComponent } from './app.component';
@@ -16,18 +16,14 @@ import { PruebaComponent } from './prueba/prueba.component';
 import { ConfigComponent } from './menu/config/config.component';
 import { DataComponent } from './menu/data/data.component';
 
-
-
 const appRoutes: Routes = [
-  {path: '', component:LoginComponent},
-  {path: 'home', component:HomeComponent},
-  {path: 'prueba', component: PruebaComponent},
-  {path: 'config', component: ConfigComponent},
-  {path: 'add', component: DataComponent},
-  {path: '**', component: LoginComponent}
-]
-
-
+  { path: '', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'prueba', component: PruebaComponent },
+  { path: 'config', component: ConfigComponent },
+  { path: 'add', component: DataComponent },
+  { path: '**', component: LoginComponent }
+];
 
 @NgModule({
   declarations: [
@@ -43,14 +39,13 @@ const appRoutes: Routes = [
     BrowserModule,
     NgxSmartModalModule.forChild(),
     RouterModule.forRoot(
-      appRoutes,
+      appRoutes
       // { enableTracing: true } // <-- debugging purposes only
     ),
     HttpClientModule,
     FormsModule
-
   ],
   providers: [LogginService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

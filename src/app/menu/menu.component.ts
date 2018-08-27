@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
-import{RouterModule, Routes} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -8,15 +6,13 @@ import{RouterModule, Routes} from '@angular/router';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  statusMenu: boolean = false;
-  constructor() { }
+  statusMenu = false;
+  constructor() {}
 
-//Buscar toggle de angular.
-  ngOnInit() {
-  }
+  // Buscar toggle de angular.
+  ngOnInit() {}
 
   public toggleMenu() {
     this.statusMenu = !this.statusMenu;
   }
-
 }
