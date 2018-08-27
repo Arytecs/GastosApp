@@ -27,9 +27,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+
   public keyDownLogin(event, nombre: string, password: string) {
     if (event.keyCode === 13) {
-      this.loggear(name, password);
+      this.loggear(nombre, password);
     }
   }
 }
