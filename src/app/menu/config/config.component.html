@@ -9,7 +9,7 @@
         </div>
         <div class="col-xs-12 col-md-6" id="userAvatar">
           <img [src]= "users[0].avatar">
-          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+          <input type="file" class="form-control-file" id="formControlFile">
         </div>  
       </div>
     </div>
@@ -98,15 +98,24 @@
   <body class="modalBody">
     <div id="newCategory">
       <form class="login" (keydown)="keyDownCat($event, categoryName, 'newid', newFather)">
-        <input autofocus type="name" id="name" class="form-control" [(ngModel)]="categoryName" name="categoryName" placeholder="Nombre categoria" required>
+        <input autofocus type="name" 
+          id="name" 
+          class="form-control" 
+          [(ngModel)]="categoryName" 
+          name="categoryName" 
+          placeholder="Nombre categoria" 
+          required>
         <select class="form-control"  id="father" [(ngModel)]="newFather" name="newFather" aria-placeholder="Selec Category">
+          <option > Categoría principal</option>
           <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
         </select>                                            
       </form>
     </div>
   </body>
   <footer class="modalFooter">
-    <button type="button" class="btn btn-primary modalBtn" (click)="addCategory(categoryName,'newid',newFather)">Add</button>
+    <button type="button" 
+      class="btn btn-primary modalBtn" 
+      (click)="addCategory(categoryName,'newid',newFather)">Add</button>
   </footer>
 </ngx-smart-modal>
 

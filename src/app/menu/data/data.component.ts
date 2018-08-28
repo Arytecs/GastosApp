@@ -14,7 +14,8 @@ export class DataComponent implements OnInit {
     new Category('Alimentación', '1', 'father'),
     new Category('Ingresos', '2', 'father'),
     new Category('Facturas', '3', 'father'),
-    new Category('Transporte', '4', 'father')
+    new Category('Transporte', '4', 'father'),
+    new Category('Transporte2', '4', '1')
   ];
   constructor() {}
 

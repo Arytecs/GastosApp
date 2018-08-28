@@ -70,6 +70,7 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
   addCategory(categoryName: string, categoryId: string, father: Category) {
     this.categories.push(new Category(categoryName, categoryId, father.id));
     this.categoryName = '';
+    this.ngxSmartModalService.getModal('myCate').close();
   }
 
   shareAccount(index: number) {

@@ -1,9 +1,18 @@
 @import '../../../css/_flexbox.scss';
 @import '../../../css/_variables.scss';
 
+.row {
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+}
 main {
   h4 {
     margin-bottom: 20px;
+  }
+
+  #datosUser {
+    margin-top: 50px;
   }
   .dataForm {
     @include flexbox();
@@ -19,11 +28,13 @@ main {
       margin-right: 5rem;
     }
   }
+  .btn-right {
+    text-align: right;
+  }
   .formBtn {
     color: white;
     background: $primaryOrange;
     border-color: transparent;
-    @include justify-content(right);
     margin-top: 30px;
   }
 }
