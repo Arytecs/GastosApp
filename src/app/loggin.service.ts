@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { GLOBAL } from './services/global';
 
 @Injectable()
 export class LogginService {
-
+  public url: string;
   constructor(private http: HttpClient) {
+    this.url = GLOBAL.url;
   }
 
-  getAll(name:string, pass:string): Observable<any> {
-    return this.http.get('http://localhost:8080/greeting?name=' + name + '&pass=' + pass);
+  getAll(email: string, pass: string): Observable<any> {
+    const params = JSON.stringify({ email, password: pass });
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(this.url + 'login', params, { headers: headers });
   }
 }

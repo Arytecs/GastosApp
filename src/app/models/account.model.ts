@@ -1,8 +1,11 @@
-export class Account {
-    public name: string;
-    public shared: string [] = [];
+import { User } from './user.model';
 
-    constructor(name: string) {
-        this.name = name;
-    }
+export class Account {
+  public name: string;
+  public shared: User[];
+
+  constructor(name: string, shared: string) {
+    this.name = name;
+    this.shared = [];
+  }
 }

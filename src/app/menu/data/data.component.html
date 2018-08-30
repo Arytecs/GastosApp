@@ -1,8 +1,29 @@
 <div class="row" style="margin-left: 0px; margin-right: 0px;">
   <app-menu></app-menu>
-  <div class="boxContainer shadow">
-    <form action="">
-      <input autofocus type="name" id="dataName" class="form-control" [(ngModel)]="dataName" name="dataName" placeholder="Descripción gasto" required>
-    </form>
-  </div>
+  <div class="row justify-content-md-center">
+  <main role="main" class="col-md-8">
+      <div id="datosUser" class="boxContainer shadow">
+        <h4>Añadir movimiento</h4>
+        <div class="row ">
+          <form class="dataForm">
+            <input autofocus type="name" id="dataName" class="form-control" [(ngModel)]="dataName" 
+              name="dataName" placeholder="Descripción gasto" required>
+            <input type="number" id="dataAmount" class="form-control col-md-4 col-xs-12" 
+              [(ngModel)]="dataAmount" name="dataAmount" placeholder="Cantidad €" required>
+            <input type="date" [(ngModel)]="dataDate" value="dataDate" 
+            class="form-control col-md-4 col-xs-12" id="dateId" name="dataDate" required> 
+            <select name="category" id="dataCategory" class="form-control" required>
+              <option *ngFor="let category of categories" [ngValue]="category"> {{ category.name }} </option>
+            </select>
+            <select name="account" id="dataAccount" class="form-control" required>
+                <option *ngFor="let account of accounts" [ngValue]="account"> {{ account.name }} </option>
+            </select>
+          </form>
+        </div>
+        <div class="btn-right">
+          <button class="btn btn-primary formBtn">Guardar</button>
+        </div> 
+      </div>
+  </main>
+</div>
 </div>

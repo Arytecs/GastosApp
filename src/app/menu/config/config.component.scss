@@ -1,144 +1,170 @@
-@import "../../../css/_flexbox.scss";
-@import "../../../css/_variables.scss";
+@import '../../../css/_flexbox.scss';
+@import '../../../css/_variables.scss';
 
-main{
-    height: 100%;
-    padding: 1rem;
-    margin-bottom: 40px;
-    margin-left: -30px;
-    font-size: 12px;
+main {
+  height: 100%;
+  padding: 1rem;
+  margin-bottom: 40px;
+  margin-left: -30px;
+  font-size: 12px;
 
-    
+  #formControlFile {
+    margin-top: 1rem;
+  }
+  .addBtn {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
 
-    .addBtn{
+    &:hover {
+      background-color: $detailsGreen;
+
+      i {
+        color: white;
+      }
+    }
+
+    i {
+      color: $detailsGreen;
+    }
+  }
+
+  #userAvatar {
+    img {
+      height: auto;
+      width: 30%;
+    }
+  }
+
+  #cuentasUser {
+    #newAccount {
+      #name {
+        margin-bottom: 7px;
+      }
+    }
+
+    .btn {
+      float: right;
+    }
+
+    #AccountsList {
+      padding: 6px;
+      @include justify-content(center);
+      @include flexbox();
+      flex-wrap: wrap;
+
+      .accountItem {
+        @include flexbox();
+        @include flex-direction(column);
+        width: 73px;
+      }
+
+      .addBtn {
+        margin-top: 5px;
+      }
+      div {
+        margin-right: 5px;
+      }
+
+      .btn-outline-secondary {
+        padding: 0;
+      }
+      p {
+        word-wrap: break-word;
+        text-align: center;
+      }
+      #AccImg {
         width: 50px;
         height: 50px;
-        background-color: white;
-        border-radius: 50%;
+      }
+    }
+  }
 
-        &:hover{
-            background-color: $detailsGreen;
-            
-            i{
-                color: white;
-            }
-        }
-
-        i{
-            color: $detailsGreen;
-        }
+  #categoriasUser {
+    #categoriesList {
+      padding: 6px;
     }
 
-    #userAvatar{        
-            
-        img{
-            height: auto;
-            width: 30%;
-            }
-        }
-
-    #cuentasUser{     
-
-        
-
-        #newAccount{              
-            #name{
-                margin-bottom: 7px;
-            }
-            
-        }
-
-        .btn{                
-            float: right;
-        }    
-
-        #AccountsList{                       
-            padding: 6px;
-            justify-content: center;
-            @include flexbox();
-            
-            .addBtn{
-                margin-top: 5px;
-            }
-            div{
-                margin-right: 5px;
-            }
-
-            .btn-outline-secondary{
-                padding: 0;
-            }
-            p{
-                word-wrap: break-word;
-                text-align: center;
-            }
-            #AccImg{                
-                width: 50px;
-                height: 50px;
-            }
-        }
+    #addCategory {
+      margin-bottom: 7px;
     }
 
-    #categoriasUser{
-
-        #categoriesList{
-            padding: 6px;
-        }
-
-        #addCategory{            
-            margin-bottom: 7px;            
-        }
-
-        #newCategory{
-            #name{
-                margin-bottom: 7px;
-            }
-            #father{
-                margin-bottom: 7px;
-            }
-            .btn{                
-                float: right;
-            }
-        }
-        
-    }
-}
-
-.modalBtn{
-    color: white;           
-    background: $primaryOrange;
-    border-color: transparent;
-}
-
-.modalHeader{
-    border-bottom: 2px solid $secondaryGrey;
-    color: white;
-    background-color: $primaryGrey;
-    margin-bottom: 10px;
-    margin-top: -14px;
-    margin-left: -14px;
-    margin-right: -14px;
-    padding: 10px;
-    
-    h3{
-        padding-left: 20px;
-    }
-}
-
-.modalBody{
-    padding: 1rem;
-
-    .btn-outline-secondary{
-        min-width: 80px;
-    }
-    select{
-        margin-top: 1rem;
-    }
-}
-
-.modalFooter{
-    .btn{
+    #newCategory {
+      #name {
+        margin-bottom: 7px;
+      }
+      #father {
+        margin-bottom: 7px;
+      }
+      .btn {
         float: right;
-        margin-left: 10px;
-        min-width: 45px;
+      }
     }
+  }
+}
+
+.modalBtn {
+  color: white;
+  background: $primaryOrange;
+  border-color: transparent;
+}
+
+.xBtnModal {
+  border: none;
+  text-align: right;
+  flex-grow: 1;
+}
+
+.roundedImg {
+  border-radius: 50%;
+  max-width: 2.5rem;
+  max-height: 2.5rem;
+  flex-grow: 2;
+}
+
+.sharedItem {
+  @include flexbox();
+  align-items: center;
+  padding-bottom: 5px;
+}
+
+.sharedEmail {
+  flex-grow: 7;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.modalHeader {
+  border-bottom: 2px solid $secondaryGrey;
+  color: white;
+  background-color: $primaryGrey;
+  margin-bottom: 10px;
+  margin-top: -14px;
+  margin-left: -14px;
+  margin-right: -14px;
+  padding: 10px;
+
+  h3 {
+    padding-left: 20px;
+  }
+}
+
+.modalBody {
+  padding: 1rem;
+
+  .btn-outline-secondary {
+    min-width: 80px;
+  }
+  select {
+    margin-top: 1rem;
+  }
+}
+
+.modalFooter {
+  .btn {
+    float: right;
+    margin-left: 10px;
+    min-width: 45px;
+  }
 }
