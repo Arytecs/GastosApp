@@ -76,7 +76,7 @@
   </header>
   <body class="modalBody">
     <div id="newAccount"> 
-      <form class="login" (keydown)="keyDownAcc($event, accountName)">
+      <form class="login" (keyup)="keyDownAcc($event, accountName)">
         <input autofocus type="name" id="name" class="form-control" [(ngModel)]="accountName" name="name" placeholder="Nombre de cuenta" required>                            
       </form>
     </div> 
