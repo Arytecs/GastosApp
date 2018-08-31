@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   statusMenu = false;
-<<<<<<< HEAD
-  constructor() { }
+  constructor() {}
 
-// Buscar toggle de angular.
-  ngOnInit() {
+  // Buscar toggle de angular.
+  ngOnInit() {}
 
   public toggleMenu() {
     this.statusMenu = !this.statusMenu;
   }
+}
