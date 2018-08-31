@@ -1,26 +1,43 @@
 <div class="container-fluid h-100 fondologin">
-    <div class="row justify-content-md-center">
-      <div class="jumbotron col-10 col-md-6 col-lg-4 align-self-center sombra">
-        <div class="text-center">
-          <h3 class="blanco titulo">Iniciar sesión</h3>
-          <form class="login">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control-plaintext blanco" placeholder="Usuario" name="email" [(ngModel)]="email" >
-              <span class="input-group-addon spanIcon">
-                <i class="oi oi-person iconlogin blanco" id="icono"></i>
-              </span>
-            </div>
-            <div class="input-group mb-3" style="margin-bottom: 4rem !important;">
-              <input type="password" class="form-control-plaintext blanco" placeholder="Contraseña" name="pass" [(ngModel)]="pass">
-              <span class="input-group-addon spanIcon">
-                <i class="oi oi-lock-locked iconlogin blanco" id="icono"></i>
-              </span>
-            </div>
-            <div class="text-center">
-              <button type="button" class="btn" (click)="loggear(email,pass)">Iniciar</button>
-            </div>
-          </form>
+  <div class="row justify-content-md-center">
+    <div class="jumbotron col-10 col-md-6 col-lg-4 align-self-center sombra">
+      <div class="text-center">
+        <h3 class="blanco titulo">Iniciar sesión</h3>
+        <div class="alert alert-danger text-left" *ngIf="!email.valid && email.touched || !password.valid && password.touched">
+          Datos Incorrectos
+          <ul>
+            <li *ngIf="!email.valid && email.touched">Debe introducir el email, y éste debe ser correcto</li>
+            <li *ngIf="!password.valid && password.touched">Debe introducir una contraseña</li>
+          </ul>
         </div>
+
+        <div class="alert alert-danger text-left" *ngIf="isError">
+          Error. {{errorMessage}}
+        </div>
+
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="login">
+          <div class="input-group mb-3">
+            <input #email="ngModel" [(ngModel)]="user.email" name="email" type="email" class="form-control-plaintext blanco" placeholder="Usuario"
+              required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            <span class="input-group-addon spanIcon">
+              <i class="oi oi-person iconlogin blanco" id="icono"></i>
+            </span>
+          </div>
+
+          <div class="input-group mb-3">
+            <input #password="ngModel" [(ngModel)]="user.password" name="password" type="password" class="form-control-plaintext blanco"
+              placeholder="Contraseña" required>
+            <span class="input-group-addon spanIcon">
+              <i class="oi oi-lock-locked iconlogin blanco" id="icono"></i>
+            </span>
+          </div>
+
+          <div class="text-center">
+            <input type="submit" class="btn" value="Entrar" [disabled]="!loginForm.form.valid" />
+          </div>
+        </form>
+
       </div>
     </div>
   </div>
+</div>
