@@ -26,6 +26,7 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
   ];
   public users: User[] = [new User('Victor', '1234', 'victorcm34@gastosapp.com', './assets/userAvatar.jpg')];
   public confirm = false;
+  public newFather: Category;
 
   constructor(public ngxSmartModalService: NgxSmartModalService, private ref: ChangeDetectorRef) {}
 

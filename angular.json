@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "gastos-app": {
+    "new-struct": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -11,13 +11,13 @@
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
-          }
-        },
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/gastos-app",
+            "outputPath": "dist/new-struct",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -26,15 +26,12 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [              
+            "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/open-iconic/font/css/open-iconic-bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -59,18 +56,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "gastos-app:build"
+            "browserTarget": "new-struct:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "gastos-app:build:production"
+              "browserTarget": "new-struct:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gastos-app:build"
+            "browserTarget": "new-struct:build"
           }
         },
         "test": {
@@ -104,7 +101,7 @@
         }
       }
     },
-    "gastos-app-e2e": {
+    "new-struct-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -112,11 +109,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "gastos-app:serve"
+            "devServerTarget": "new-struct:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "gastos-app:serve:production"
+              "devServerTarget": "new-struct:serve:production"
             }
           }
         },
@@ -132,10 +129,5 @@
       }
     }
   },
-  "defaultProject": "gastos-app",
-  "schematics": {
-    "@schematics/angular:component": {
-      "styleext": "scss"
-    }
-  }
+  "defaultProject": "new-struct"
 }

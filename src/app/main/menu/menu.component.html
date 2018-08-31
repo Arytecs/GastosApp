@@ -1,0 +1,42 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="wrapper" id="menuDesktop" [ngClass]="statusMenu ? '' : 'active'">
+    	    <div class="side-bar">
+                <ul>
+                    <li class="menu-head">
+                        GastosAPP <a class="push_menu" (click)="toggleMenu()"><i class="oi oi-menu float-right"></i></a>
+                    </li>
+                    <div class="menu">
+                        <li>
+                            <a routerLinkActive="active" routerLink="/main/home">Inicio <i class="oi oi-home float-right"></i></a>
+                        </li>
+                        <li>
+                            <a routerLinkActive="active" routerLink="/main/stats" >Estadísticas<i class="oi oi-pie-chart float-right"></i></a>
+                        </li>                    
+                        <li>
+                            <a routerLinkActive="active" routerLink="/main/config" >Configuracion<i class="oi oi-cog float-right"></i></a>
+                        </li>                   
+                        <li>
+                            <a routerLink="/login">Salir<i class="oi oi-power-standby float-right"></i></a>
+                        </li>
+                    </div>                    
+                </ul>
+    	    </div>   
+            
+        </div>
+        <div id="menuMobile">
+            <div class="col navbar-inverse navbar-fixed-bottom">
+                <div class="row" id="bottomNav">
+                  <div class="col text-center"><a routerLinkActive="active" routerLink="/main/home"><i class="oi oi-home"></i></a></div>
+                  <div class="col text-center"><a routerLinkActive="active" routerLink="/main/stats"><i class="oi oi-pie-chart"></i></a></div>
+                  <div class="col text-center plusbutton"><a routerLinkActive="active" routerLink="/main/dataform" id="plusbutton"><i class="oi oi-plus"></i></a></div>
+                  <div class="col text-center"><a routerLinkActive="active" routerLink="/main/config"><i class="oi oi-cog"></i></a></div>
+                  <div class="col text-center"><a routerLink="/login"><i class="oi oi-power-standby"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="floatAdd">
+        <a  routerLink="/main/dataform"> <i class="oi oi-plus"></i></a>
+    </div>
+</div>

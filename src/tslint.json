@@ -1,12 +1,17 @@
 {
-  "extends": "../tslint.json",
-  "rules": {
-    "directive-selector": [true, "attribute", "app", "camelCase"],
-    "component-selector": [true, "element", "app", "kebab-case"],
-    "defaultSeverity": "error",
-    "extends": ["@clearpeaks/code-linting-style/tslint.js"],
-    "jsRules": {
-      "no-empty": true
+    "extends": "../tslint.json",
+    "rules": {
+        "directive-selector": [
+            true,
+            "attribute",
+            "app",
+            "camelCase"
+        ],
+        "component-selector": [
+            true,
+            "element",
+            "app",
+            "kebab-case"
+        ]
     }
-  }
 }
