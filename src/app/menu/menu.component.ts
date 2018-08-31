@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
   statusMenu = false;
+
   public Type = Type;
   selectedType: string;
    @Output() statusMainMenu: EventEmitter<boolean> =   new EventEmitter();
@@ -17,6 +18,7 @@ export class MenuComponent implements OnInit {
     this.statusMenu = !this.statusMenu;
     this.statusMainMenu.emit(this.statusMenu);
   }
+
    clickMenuItem(type: string) {
     this.selectedType = type;
     this.router.navigate([type], { relativeTo: this.route });
