@@ -24,6 +24,12 @@ export class UserService {
         return this.http.post(this.url + 'login', params, { headers: headers });
     }
 
+    register(user: User): Observable<any> {
+        const params = JSON.stringify(user);
+        const headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this.http.post(this.url + 'register', params, { headers: headers });
+    }
+
     getIdentity() {
         const identity = JSON.parse(localStorage.getItem('identity'));
 
