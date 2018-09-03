@@ -1,3 +1,5 @@
+@import "../../css/_variables.scss";
+
 .jumbotron{
     background-color: rgba(49, 70, 91, 0.7);
     position: absolute;
@@ -10,9 +12,10 @@
     padding-bottom: 27px;
 }
 
-.titulo{
+.tittle{
     margin-top:0;
     margin-bottom: 40px;
+    font-weight: bold;
 }
 
 .fondologin {
@@ -29,7 +32,7 @@ input {
     padding-bottom: 0%;
 }
 
-.blanco{
+.white{
     color: white;
 }
 
@@ -59,4 +62,17 @@ input {
 background-color: #f3a117;
 color: white;
 font-weight: bold;
+padding: 0.5rem;
+}
+
+.menubtn{
+    background: transparent;
+    color: white;
+    margin-bottom: 2rem;
+    border: none;
+
+    &.active{
+        text-decoration: underline;
+        font-weight: bold;
+    }
 }

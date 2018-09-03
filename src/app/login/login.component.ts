@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -15,17 +16,26 @@ export class LoginComponent implements OnInit {
   public token: string;
   public isError: boolean;
   public errorMessage: string;
+  public statusLogin = true;
+  public password2: string;
 
   constructor(
+    private spinner: NgxSpinnerService,
     private _route: ActivatedRoute,
     private _router: Router, private _userService: UserService) {
     this.user = new User('', '', '', '', false);
   }
 
+
   ngOnInit() {
   }
 
+  changeStatus() {
+    this.statusLogin = !this.statusLogin;
+  }
+
   public onSubmit() {
+    this.spinner.show();
     this._userService.login(this.user).subscribe(
       response => {
         this.identity = response.user;
@@ -50,6 +60,7 @@ export class LoginComponent implements OnInit {
         }
       }
     );
+    this.spinner.hide();
   }
   getToken(): any {
     this._userService.login(this.user, true).subscribe(
@@ -77,7 +88,7 @@ export class LoginComponent implements OnInit {
 
   public keyDownLogin(event, nombre: string, password: string) {
     if (event.keyCode === 13) {
-      // this.onSubmit(nombre, password);
+       this.onSubmit();
     }
   }
 

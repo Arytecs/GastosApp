@@ -27,6 +27,7 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
     new Category('Transporte', '4', 'father')
   ];
   public identity: User;
+  public url: string;
 
   public users: User[] = [new User('Victor', '1234', 'victorcm34@gastosapp.com', './assets/userAvatar.jpg', false)];
   public confirm = false;

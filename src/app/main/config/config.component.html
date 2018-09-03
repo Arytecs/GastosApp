@@ -42,7 +42,7 @@
                   <div class="sharedItem" *ngFor= "let shared of accountToModify.shared ; let i = index"> 
                     <img class="roundedImg" [src]="accountToModify.shared[i].avatar" /> 
                     <span class="sharedEmail">{{ accountToModify.shared[i].email}}</span>
-                    <button class="oi oi-x xBtnModal" (click)="deleteShared(myAcc.getData().index)"></button>
+                    <button class="btn oi oi-x xBtnModal" (click)="deleteShared(myAcc.getData().index)"></button>
                   </div>
                 </body>
                   <footer class="modalFooter">
