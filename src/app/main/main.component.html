@@ -1,0 +1,6 @@
+<div class="row" style="margin-left: 0px; margin-right: 0px;">
+  <app-menu (statusMainMenu)="toggleMenu($event)"></app-menu>
+  <main role="main" class="col content" [ngClass]="statusMenu ? '' : 'active'">
+    <router-outlet></router-outlet>
+  </main>
+</div>

@@ -24,3 +24,13 @@ body{
     border: 1px solid $detailsGrey;
     margin: 1rem;
 }
+
+
+
+.active > .side-bar
+{
+    margin-left:-150px;   
+    transition: margin-left 0.5s;
+}
+
+

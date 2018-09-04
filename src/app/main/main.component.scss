@@ -1,0 +1,21 @@
+@import "~bootstrap/scss/bootstrap-grid.scss";
+
+
+.content.active
+{
+    margin-left:50px;
+    transition: margin-left 0.5s;
+}
+
+.content
+{
+    margin-left: 200px;
+    transition: margin-left 0.5s;
+}
+
+@include media-breakpoint-down(md){
+    .content{
+        margin: 0 auto !important;
+    }
+    
+}
