@@ -34,6 +34,8 @@ export class LoginComponent implements OnInit {
 
   changeStatus(isLogin: boolean) {
     this.statusLogin = isLogin;
+    this.isError = false;
+    this.isErrorRegister = false;
   }
 
   public onSubmit() {
