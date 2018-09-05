@@ -10,6 +10,10 @@
     transform: translateX(-50%) translateY(-50%);
     border-radius: 0px !important;
     padding: 0;
+
+    .msgBox{
+        margin-top: 1rem;
+    }
 }
 
 .tittle{
@@ -30,6 +34,10 @@
 input {
     margin-bottom: 1px;
     padding-bottom: 0%;
+
+    &::placeholder{
+        color: white;
+    }
 }
 
 .white{

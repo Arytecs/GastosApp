@@ -3,13 +3,13 @@ export class User {
   public password: string;
   public email: string;
   public avatar: string;
-  public gettoken: boolean;
+  public getToken: boolean;
 
-  constructor(name: string, password: string, email: string, avatar: string, gettoken: boolean) {
+  constructor(name: string, password: string, email: string, avatar: string, getToken: boolean) {
     this.name = name;
     this.password = password;
     this.email = email;
     this.avatar = avatar;
-    this.gettoken = gettoken;
+    this.getToken = getToken;
   }
 }
