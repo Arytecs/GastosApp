@@ -1,13 +1,14 @@
 @import "~bootstrap/scss/bootstrap-grid.scss";
 
-// .row{
-//     background-image: url("/assets/backmain.jpg");
-//     background-repeat: no-repeat, repeat;
-//     background-size: cover;
-//     position: absolute;
-//     width: 100%;   
-//     height: 100%;
-// }
+.row{
+     background-image: url("/assets/backgroundmain.jpg");
+     background-repeat: no-repeat, repeat;
+     background-size: cover;
+    //  position: absolute;
+     background-attachment: fixed;
+     width: 100%;   
+     height: 100%;
+}
 
 .content.active
 {
