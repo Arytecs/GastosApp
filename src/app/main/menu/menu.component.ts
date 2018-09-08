@@ -27,4 +27,11 @@ export class MenuComponent implements OnInit {
     this.selectedType = type;
     this.router.navigate([type], { relativeTo: this.route });
   }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
+
 }
+

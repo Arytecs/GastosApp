@@ -1,13 +1,16 @@
 export class User {
+  public _id: string;
   public name: string;
-  public pass: string;
+  public password: string;
   public email: string;
   public avatar: string;
+  public isToken: boolean;
 
-  constructor(name: string, pass: string, email: string, avatar: string) {
+  constructor(_name: string, password: string, email: string, avatar: string, isToken: boolean) {
     this.name = name;
-    this.pass = pass;
+    this.password = password;
     this.email = email;
     this.avatar = avatar;
+    this.isToken = isToken;
   }
 }

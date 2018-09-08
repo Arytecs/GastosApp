@@ -1,3 +1,5 @@
+@import "../../css/_variables.scss";
+
 .jumbotron{
     background-color: rgba(49, 70, 91, 0.7);
     position: absolute;
@@ -7,16 +9,21 @@
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
     border-radius: 0px !important;
-    padding-bottom: 27px;
+    padding: 0;
+
+    .msgBox{
+        margin-top: 1rem;
+    }
 }
 
-.titulo{
+.tittle{
     margin-top:0;
     margin-bottom: 40px;
+    font-weight: bold;
 }
 
 .fondologin {
-    background-image: url("/assets/fondologin.jpg");
+    background-image: url("/assets/backgroundlogin.jpg");
     background-repeat: no-repeat, repeat;
     background-size: cover;
     position: absolute;
@@ -27,9 +34,13 @@
 input {
     margin-bottom: 1px;
     padding-bottom: 0%;
+
+    &::placeholder{
+        color: white;
+    }
 }
 
-.blanco{
+.white{
     color: white;
 }
 
@@ -59,4 +70,38 @@ input {
 background-color: #f3a117;
 color: white;
 font-weight: bold;
+padding: 0.5rem;
+}
+
+.menubtn{
+    background: transparent;
+    color: white;
+    margin-bottom: 2rem;
+    border: none;
+
+    &.active{
+        font-weight: bold;
+    }
+}
+
+#btnPanel{
+
+    button{
+        padding: 1rem;
+        background-color: $loginGrey;
+        border-bottom: 1px solid $thirdGrey;
+        &.active{
+            background: transparent;
+            border-bottom: none;
+        }
+        &:focus{
+            outline: none;
+        }
+    }
+}
+
+#formPanel{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
 }

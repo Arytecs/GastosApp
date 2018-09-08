@@ -1,26 +1,115 @@
 <div class="container-fluid h-100 fondologin">
-    <div class="row justify-content-md-center">
-      <div class="jumbotron col-10 col-md-6 col-lg-4 align-self-center sombra">
-        <div class="text-center">
-          <h3 class="blanco titulo">Iniciar sesión</h3>
-          <form class="login">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control-plaintext blanco" placeholder="Usuario" name="email" [(ngModel)]="email" >
-              <span class="input-group-addon spanIcon">
-                <i class="oi oi-person iconlogin blanco" id="icono"></i>
-              </span>
-            </div>
-            <div class="input-group mb-3" style="margin-bottom: 4rem !important;">
-              <input type="password" class="form-control-plaintext blanco" placeholder="Contraseña" name="pass" [(ngModel)]="pass">
-              <span class="input-group-addon spanIcon">
-                <i class="oi oi-lock-locked iconlogin blanco" id="icono"></i>
-              </span>
-            </div>
-            <div class="text-center">
-              <button type="button" class="btn" (click)="loggear(email,pass)">Iniciar</button>
-            </div>
-          </form>
+  <div class="row justify-content-md-center">
+    <div class="jumbotron col-10 col-md-6 col-lg-4 align-self-center loginShadow">
+      <div class="text-center">
+        <div id="btnPanel">
+            <button [ngClass]="statusLogin ? 'active' : ''" (click)="changeStatus(true)" class="menubtn col-6"  id="loginbtn">Entrar</button>
+            <button [ngClass]="statusLogin ? '' : 'active'" (click)="changeStatus(false)" class="menubtn col-6" >Registrarme</button>
         </div>
+        
+        <div id="formPanel">
+            <h2 class="white tittle">GastosApp</h2>
+
+            <ng-container *ngIf="statusLogin; then login; else register">
+            </ng-container>
+    
+            <ng-template #login>
+              <ng-container>
+                <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="login">
+                  <div class="input-group mb-3">
+                    <input #email="ngModel" [(ngModel)]="user.email" name="email" type="email" class="form-control-plaintext white" placeholder="Usuario"
+                      required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    <span class="input-group-addon spanIcon">
+                      <i class="oi oi-envelope-closed iconlogin white"></i>
+                    </span>
+                  </div>
+    
+                  <div class="input-group mb-3">
+                    <input #password="ngModel" [(ngModel)]="user.password" name="password" type="password" class="form-control-plaintext white"
+                      placeholder="Contraseña" required>
+                    <span class="input-group-addon spanIcon">
+                      <i class="oi oi-key iconlogin white"></i>
+                    </span>
+                  </div>
+    
+                  <div class="text-center">
+                    <input type="submit" class="btn" value="Entrar" [disabled]="!loginForm.form.valid" />
+                  </div>
+                </form>
+    
+                <div class="alert alert-danger text-left msgBox" *ngIf="!email.valid && email.touched || !password.valid && password.touched">
+                  Datos Incorrectos
+                  <ul>
+                    <li *ngIf="!email.valid && email.touched">Debe introducir el email, y éste debe ser válido</li>
+                    <li *ngIf="!password.valid && password.touched">Debe introducir una contraseña</li>
+                  </ul>
+                </div>
+    
+                <div class="alert alert-danger text-left msgBox" *ngIf="isLoginMsg">
+                  {{loginMessage}}
+                </div>
+    
+              </ng-container>
+            </ng-template>
+            <ng-template #register>
+              <ng-container>
+                <form #registerForm="ngForm" (ngSubmit)="onRegister()" class="login">
+                  <div class="input-group mb-3">
+                    <input #name="ngModel" [(ngModel)]="user.name" name="name" type="text" class="form-control-plaintext white" placeholder="Nombre"
+                      required>
+                    <span class="input-group-addon spanIcon">
+                      <i class="oi oi-person iconlogin white"></i>
+                    </span>
+                  </div>
+                  <div class="input-group mb-3">
+                    <input #emailRegister="ngModel" [(ngModel)]="user.email" name="emailRegister" type="email" class="form-control-plaintext white"
+                      placeholder="Correo electrónico" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    <span class="input-group-addon spanIcon">
+                      <i class="oi oi-envelope-closed iconlogin white"></i>
+                    </span>
+                  </div>
+    
+                  <div class="input-group mb-3">
+                    <input #passwordRegister="ngModel" [(ngModel)]="user.password" name="passwordRegister" type="password" class="form-control-plaintext white"
+                      placeholder="Contraseña" required>
+                    <span class="input-group-addon spanIcon">
+                      <i class="oi oi-key iconlogin white"></i>
+                    </span>
+                  </div>
+    
+                  <div class="input-group mb-3">
+                    <input #confirmpassword="ngModel" [(ngModel)]="password2" name="confirmpassword" type="password" class="form-control-plaintext white"
+                      placeholder="Repetir contraseña" required>
+                    <span class="input-group-addon spanIcon">
+                      <i class="oi oi-key iconlogin white"></i>
+                    </span>
+                  </div>
+    
+                  <div class="text-center">
+                    <input [disabled]="!registerForm.form.valid || password2 != user.password" type="submit" class="btn" value="Registrarme"  />
+                  </div>
+                </form>
+    
+                <div class="alert alert-danger text-left msgBox" *ngIf="!emailRegister.valid && emailRegister.touched || confirmpassword != passwordRegister && confirmpassword.touched">
+                  Datos Incorrectos
+                  <ul>
+                    <li *ngIf="!name.valid && name.touched">Debe introducir su nombre</li>
+                    <li *ngIf="!emailRegister.valid && emailRegister.touched">Debe introducir el email, y éste debe ser válido</li>
+                    <li *ngIf="!passwordRegister.valid && passwordRegister.touched">Debe introducir una contraseña</li>
+                    <li *ngIf="confirmpassword != passwordRegister">Las contraseñas deben coincidir</li>
+                  </ul>
+                </div>
+    
+                <div class="alert alert-danger text-left msgBox" *ngIf="isRegisterMsg">
+                  Error. {{registerMessage}}
+                </div>
+              </ng-container>
+            </ng-template>
+    
+            <ngx-spinner bdColor="rgba(51, 51, 51, 0.9)" size="default" color="#fff" type="ball-atom"></ngx-spinner>
+        </div>
+        
       </div>
     </div>
   </div>
+</div>

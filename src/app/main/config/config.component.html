@@ -3,12 +3,12 @@
     <div id="datosUser" class="boxContainer shadow">
       <div class="row">
         <div class="col-xs-12 col-md-6">
-          <h4>{{ users[0].name }}</h4>
-          <h4>{{ users[0].email }}</h4>
+          <h4>{{ identity.name }}</h4>
+          <h4>{{ identity.email }}</h4>
         </div>
         <div class="col-xs-12 col-md-6" id="userAvatar">
-          <img [src]= "users[0].avatar">
-          <input type="file" class="form-control-file" id="formControlFile">
+          <img [src]= "identity.avatar">
+          <input type="file" (change)="handleFileInput($event.target.files)" class="form-control-file" id="formControlFile">
         </div>  
       </div>
     </div>
@@ -42,7 +42,7 @@
                   <div class="sharedItem" *ngFor= "let shared of accountToModify.shared ; let i = index"> 
                     <img class="roundedImg" [src]="accountToModify.shared[i].avatar" /> 
                     <span class="sharedEmail">{{ accountToModify.shared[i].email}}</span>
-                    <button class="oi oi-x xBtnModal" (click)="deleteShared(myAcc.getData().index)"></button>
+                    <button class="btn oi oi-x xBtnModal" (click)="deleteShared(myAcc.getData().index)"></button>
                   </div>
                 </body>
                   <footer class="modalFooter">
@@ -105,7 +105,6 @@
           placeholder="Nombre categoria" 
           required>
         <select class="form-control"  id="father" [(ngModel)]="newFather" name="newFather" aria-placeholder="Selec Category">
-          <option > Categoría principal</option>
           <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
         </select>                                            
       </form>

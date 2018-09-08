@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { Account } from '../../models/account.model';
 import { Category } from '../../models/category.model';
@@ -8,7 +9,8 @@ import { AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-config',
   templateUrl: './config.component.html',
-  styleUrls: ['./config.component.scss']
+  styleUrls: ['./config.component.scss'],
+  providers: [UserService]
 })
 export class ConfigComponent implements OnInit, AfterViewChecked {
   public accounts: Account[] = [];
@@ -19,16 +21,21 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
   public categoryName: string;
   public categoryId: string;
   public categories: Category[] = [
-    new Category('Alimentación', '1', 'father'),
-    new Category('Ingresos', '2', 'father'),
-    new Category('Facturas', '3', 'father'),
-    new Category('Transporte', '4', 'father')
+    new Category('Gasto', '1', 'father'),
+    new Category('Ingreso', '2', 'father')
   ];
-  public users: User[] = [new User('Victor', '1234', 'victorcm34@gastosapp.com', './assets/userAvatar.jpg')];
+  public identity: User;
+  public url: string;
+
   public confirm = false;
   public newFather: Category;
 
-  constructor(public ngxSmartModalService: NgxSmartModalService, private ref: ChangeDetectorRef) {}
+  constructor(
+    public ngxSmartModalService: NgxSmartModalService,
+    private ref: ChangeDetectorRef,
+    private _userService: UserService) {
+    this.identity = this._userService.getIdentity();
+  }
 
   addAccount(accountName: string) {
     this.accounts.push(new Account(accountName, ''));
@@ -50,7 +57,7 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
     this.ref.detectChanges();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   doAcction(doAcction: boolean) {
     this.confirm = doAcction;
@@ -75,7 +82,7 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
   }
 
   shareAccount(index: number) {
-    this.accountToModify.shared.push(new User('Araceli', '1234', this.shareTo, './assets/userAvatar.jpg'));
+    this.accountToModify.shared.push(new User('Araceli', '1234', this.shareTo, './assets/userAvatar.jpg', false));
     this.shareTo = '';
   }
 
@@ -93,5 +100,15 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
     if (event.keyCode === 13) {
       this.addCategory(categoryName, categoryId, newFather);
     }
+  }
+
+  public handleFileInput(files: FileList) {
+    this._userService.setImg(this.identity).subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error);
+    });
+    this.identity.avatar = files.item(0).name;
+    console.log(files.item(0).name);
   }
 }

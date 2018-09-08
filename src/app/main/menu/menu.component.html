@@ -17,7 +17,7 @@
                             <a routerLinkActive="active" routerLink="/main/config" >Configuracion<i class="oi oi-cog float-right"></i></a>
                         </li>                   
                         <li>
-                            <a routerLink="/login">Salir<i class="oi oi-power-standby float-right"></i></a>
+                            <a (click)="logout()">Salir<i class="oi oi-power-standby float-right"></i></a>
                         </li>
                     </div>                    
                 </ul>
@@ -31,7 +31,7 @@
                   <div class="col text-center"><a routerLinkActive="active" routerLink="/main/stats"><i class="oi oi-pie-chart"></i></a></div>
                   <div class="col text-center plusbutton"><a routerLinkActive="active" routerLink="/main/dataform" id="plusbutton"><i class="oi oi-plus"></i></a></div>
                   <div class="col text-center"><a routerLinkActive="active" routerLink="/main/config"><i class="oi oi-cog"></i></a></div>
-                  <div class="col text-center"><a routerLink="/login"><i class="oi oi-power-standby"></i></a></div>
+                  <div class="col text-center"><a (click)="logout()"><i class="oi oi-power-standby"></i></a></div>
                 </div>
             </div>
         </div>
