@@ -21,15 +21,12 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
   public categoryName: string;
   public categoryId: string;
   public categories: Category[] = [
-    new Category('Alimentación', '1', 'father'),
-    new Category('Ingresos', '2', 'father'),
-    new Category('Facturas', '3', 'father'),
-    new Category('Transporte', '4', 'father')
+    new Category('Gasto', '1', 'father'),
+    new Category('Ingreso', '2', 'father')
   ];
   public identity: User;
   public url: string;
 
-  public users: User[] = [new User('Victor', '1234', 'victorcm34@gastosapp.com', './assets/userAvatar.jpg', false)];
   public confirm = false;
   public newFather: Category;
 
@@ -103,5 +100,15 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
     if (event.keyCode === 13) {
       this.addCategory(categoryName, categoryId, newFather);
     }
+  }
+
+  public handleFileInput(files: FileList) {
+    this._userService.setImg(this.identity).subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error);
+    });
+    this.identity.avatar = files.item(0).name;
+    console.log(files.item(0).name);
   }
 }

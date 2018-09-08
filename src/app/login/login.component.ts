@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     this._userService.login(this.user).subscribe(
       response => {
         this.identity = response.user;
-        if (!this.identity && this.identity._id) {
+        if (!this.identity) {
           this.isLoginMsg = true;
           this.registerMessage = 'Error al conseguir los datos del usuario';
           this.spinner.hide();
