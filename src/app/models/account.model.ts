@@ -1,11 +1,13 @@
 import { User } from './user.model';
+import { Movement } from './movement.model';
 
 export class Account {
-  public name: string;
-  public shared: User[];
 
-  constructor(name: string, shared: string) {
-    this.name = name;
-    this.shared = [];
-  }
+  constructor(
+    public name: string,
+    public shared: User[],
+    public img: string,
+    public total: number,
+    public movements: Movement[],
+    ) {}
 }
