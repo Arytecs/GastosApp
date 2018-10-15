@@ -16,7 +16,8 @@ export class UserService {
 
     login(user: User, gettoken = null): Observable<any> {
         if (gettoken != null) {
-            user.gettoken = gettoken;
+            user.getToken = gettoken;
+            console.log('HOLIIIII');
         }
 
         const params = JSON.stringify(user);
@@ -27,6 +28,7 @@ export class UserService {
     register(user: User): Observable<any> {
         const params = JSON.stringify(user);
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
         return this.http.post(this.url + 'register', params, { headers: headers });
     }
 
