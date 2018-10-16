@@ -5,6 +5,7 @@ import { Category } from '../../models/category.model';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { User } from '../../models/user.model';
 import { AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-config',
@@ -13,12 +14,13 @@ import { AfterViewChecked, ChangeDetectorRef } from '@angular/core';
   providers: [UserService]
 })
 export class ConfigComponent implements OnInit, AfterViewChecked {
-  public accounts: Account[] = [];
+  public account: Account;
+  public accounts: Account [];
   public newname: string;
   public accountName: string;
-  public shareTo: string;
-  public categoryName: string;
-  public categoryId: string;
+  public accountToModify;
+  public token;
+  public status;
   public categories: Category[] = [
     new Category('Gasto', '1', 'father'),
     new Category('Ingreso', '2', 'father')
@@ -32,14 +34,54 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
     private ref: ChangeDetectorRef,
-    private _userService: UserService) {
+    private _userService: UserService,
+    private _accountService: AccountService
+    ) {
     this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
+    this.account = new Account('', '../../assets/AccountImg.jpg', '', [], '');
   }
 
-  addAccount(accountName: string) {
-    this.accounts.push();
+  ngOnInit() {
+    this.getAccounts(this.token, this.identity._id);
+  }
+
+  addAccount() {
+    this.account.creator = this.identity._id;
+
+    this._accountService.createAccount(this.account, this.token).subscribe(
+      response => {
+        if (response.account) {
+          console.log('cuenta creada');
+        }
+      },
+      error => {
+        this.status = 'error';
+      }
+    );
     this.ngxSmartModalService.getModal('addAcc').close();
-    this.accountName = '';
+    this.getAccounts(this.token, this.identity._id);
+  }
+
+  getAccounts(token, id ) {
+    this._accountService.getAccounts(token, id).subscribe(
+      response => {
+        if (response.accounts) {
+          console.log(this.accounts);
+          this.accounts = response.accounts;
+        } else {
+          this.status = 'error';
+          console.log('no voy');
+        }
+      },
+      error => {
+        const errorMessage = <any>error;
+        console.log(errorMessage);
+        if (errorMessage != null) {
+          this.status = 'error';
+        }
+      }
+    );
   }
 
   // saveAccount(index: number) {
@@ -47,22 +89,19 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
   //   this.newname = '';
   // }
 
-  deleteAccount(index: number) {
-    this.accounts.splice(index, 1);
-    this.ngxSmartModalService.getModal('myAcc').close();
-  }
+  // deleteAccount(index: number) {
+  //   this.ngxSmartModalService.getModal('myAcc').close();
+  // }
 
   ngAfterViewChecked(): void {
     this.ref.detectChanges();
   }
 
-  ngOnInit() { }
-
-  doAcction(doAcction: boolean) {
-    this.confirm = doAcction;
-    this.ngxSmartModalService.getModal('confirm').close();
-    return confirm;
-  }
+  // doAcction(doAcction: boolean) {
+  //   this.confirm = doAcction;
+  //   this.ngxSmartModalService.getModal('confirm').close();
+  //   return confirm;
+  // }
 
   // modifyAccount(i: number) {
   //   this.accountToModify = this.accounts[i];
@@ -74,11 +113,11 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
   //   this.ngxSmartModalService.getModal('myAcc').open();
   // }
 
-  addCategory(categoryName: string, categoryId: string, father: Category) {
-    this.categories.push(new Category(categoryName, categoryId, father.id));
-    this.categoryName = '';
-    this.ngxSmartModalService.getModal('myCate').close();
-  }
+  // addCategory(categoryName: string, categoryId: string, father: Category) {
+  //   this.categories.push(new Category(categoryName, categoryId, father.id));
+  //   this.categoryName = '';
+  //   this.ngxSmartModalService.getModal('myCate').close();
+  // }
 
   // shareAccount(index: number) {
   //   this.accountToModify.shared.push(new User('Araceli', '1234', this.shareTo, './assets/userAvatar.jpg', false));
@@ -89,25 +128,25 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
   //   this.accountToModify.shared.splice(index, 1);
   // }
 
-  public keyDownAcc(event, nombre: string) {
+  public keyDownAcc(event) {
     if (event.keyCode === 13) {
-      this.addAccount(nombre);
+      this.addAccount();
     }
   }
 
-  public keyDownCat(event, categoryName: string, categoryId: string, newFather: Category) {
-    if (event.keyCode === 13) {
-      this.addCategory(categoryName, categoryId, newFather);
-    }
-  }
+  // public keyDownCat(event, categoryName: string, categoryId: string, newFather: Category) {
+  //   if (event.keyCode === 13) {
+  //     this.addCategory(categoryName, categoryId, newFather);
+  //   }
+  // }
 
-  public handleFileInput(files: FileList) {
-    this._userService.setImg(this.identity).subscribe(res => {
-      console.log(res);
-    }, error => {
-      console.log(error);
-    });
-    this.identity.avatar = files.item(0).name;
-    console.log(files.item(0).name);
-  }
+  // public handleFileInput(files: FileList) {
+  //   this._userService.setImg(this.identity).subscribe(res => {
+  //     console.log(res);
+  //   }, error => {
+  //     console.log(error);
+  //   });
+  //   this.identity.avatar = files.item(0).name;
+  //   console.log(files.item(0).name);
+  // }
 }

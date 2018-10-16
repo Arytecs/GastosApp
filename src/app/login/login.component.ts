@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private _route: ActivatedRoute,
     private _router: Router, private _userService: UserService) {
+      this.user = new User('', '', '', '', '', false);
   }
 
   ngOnInit() {
@@ -39,6 +40,8 @@ export class LoginComponent implements OnInit {
 
   public onSubmit() {
     this.spinner.show();
+    console.log(this.user);
+
     this._userService.login(this.user).subscribe(
       response => {
         this.identity = response.user;

@@ -22,7 +22,7 @@
             <button  class="btn" (click)="modifyAccount(i)"><img src="/assets/AccountImg.jpg" id="AccImg"></button> 
             <p>{{ account.name }}</p>
             <!-- Modal que modifica y comparte las cuentas -->
-            <ngx-smart-modal #myAcc identifier="myAcc">
+            <ngx-smart-modal #myAcc identifier="myAcc" *ngIf="accountToModify">
                 <header class="modalHeader">
                   <h3>{{ accountToModify.name }}</h3> 
                 </header>
@@ -76,13 +76,13 @@
   <body class="modalBody">
     <div id="newAccount"> 
       <form class="login" (keyup)="keyDownAcc($event, accountName)">
-        <input autofocus type="name" id="name" class="form-control" [(ngModel)]="accountName" name="name" placeholder="Nombre de cuenta" required>                            
+        <input autofocus type="name" id="name" class="form-control" [(ngModel)]="account.name" name="name" placeholder="Nombre de cuenta" required>                            
       </form>
     </div> 
   </body>
   <footer class="modalFooter">
     <div>
-      <button type="button" class="btn btn-primary modalBtn" (click)="addAccount(accountName)">Añadir</button>
+      <button type="button" class="btn btn-primary modalBtn" (click)="addAccount()">Añadir</button>
     </div>          
   </footer>                                 
 </ngx-smart-modal>

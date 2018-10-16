@@ -5,9 +5,9 @@ export class Account {
 
   constructor(
     public name: string,
-    public shared: User[],
     public img: string,
-    public total: number,
-    public movements: Movement[],
+    public creator: string,
+    public shared: User[],
+    public created_at: string,
     ) {}
 }

@@ -40,7 +40,21 @@ export class AccountService {
 
     setImg(user: User): Observable<any> {
         const params = JSON.stringify(user);
-        const clientHeaders = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
-        return this.http.post(this.url + '/upload-image-user/' + user._id , params, {headers: clientHeaders});
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this.http.post(this.url + '/upload-image-user/' + user._id , params, {headers: headers});
     }
+
+    createAccount(account, token): Observable<any> {
+        const params = JSON.stringify(account);
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
+
+        return this.http.post(this.url + 'save-account', params, {headers: headers});
+    }
+
+    getAccounts(token, id): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
+
+        return this.http.get(this.url + 'get-accounts/' + id, {headers: headers});
+    }
+
 }

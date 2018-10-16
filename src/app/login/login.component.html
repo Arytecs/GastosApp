@@ -37,7 +37,7 @@
                   </div>
                 </form>
     
-                <div class="alert alert-danger text-left msgBox" *ngIf="!email.valid && email.touched || !password.valid && password.touched">
+                <div class="alert alert-danger text-left msgBox" *ngIf="!user.email.valid && user.email.touched || !user.password.valid && user.password.touched">
                   Datos Incorrectos
                   <ul>
                     <li *ngIf="!email.valid && email.touched">Debe introducir el email, y éste debe ser válido</li>
