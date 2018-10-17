@@ -19,7 +19,7 @@
       <div class="row">        
         <div id="AccountsList">
           <div class="accountItem" *ngFor="let account of accounts; let i = index">
-            <button  class="btn" (click)="modifyAccount(i)"><img src="/assets/AccountImg.jpg" id="AccImg"></button> 
+            <button  class="btn btnAcc" (click)="modifyAccount(i)"><img src="/assets/AccountImg.jpg" id="AccImg"></button> 
             <p>{{ account.name }}</p>
             <!-- Modal que modifica y comparte las cuentas -->
             <ngx-smart-modal #myAcc identifier="myAcc" *ngIf="accountToModify">
@@ -28,9 +28,9 @@
                 </header>
                 <body class="modalBody">
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control" [(ngModel)]="newname" name="newname" placeholder="Nuevo nombre" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control" [(ngModel)]="accountToModify.name" name="newname" placeholder="Nuevo nombre" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" (click)="saveAccount(myAcc.getData().index)">Cambiar</button>
+                      <button class="btn btn-outline-secondary" type="button" (click)="saveAccount()">Cambiar</button>
                     </div>
                   </div>  
                   <div class="input-group mb-3">
@@ -46,7 +46,7 @@
                   </div>
                 </body>
                   <footer class="modalFooter">
-                    <button type="button" class="btn modalBtn" (click)="deleteAccount(myAcc.getData().index)">Borrar</button>                  
+                    <button type="button" class="btn orangeBtn" (click)="deleteAccount()">Borrar</button>                  
                   </footer>                               
               </ngx-smart-modal>
           </div> 

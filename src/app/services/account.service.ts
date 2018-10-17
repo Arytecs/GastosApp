@@ -57,4 +57,17 @@ export class AccountService {
         return this.http.get(this.url + 'get-accounts/' + id, {headers: headers});
     }
 
+    updateAccount(token, account): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
+        const params = account;
+
+        return this.http.put(this.url + 'update-acc/', params, {headers: headers});
+    }
+
+    deleteAccount(token, id): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
+
+        return this.http.delete(this.url + '/delete-acc/' + id, {headers: headers});
+    }
+
 }
