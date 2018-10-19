@@ -110,6 +110,11 @@ main {
   color: white;
   background: $primaryOrange;
   border-color: transparent;
+  margin-right: 15px;
+  float: right;
+  margin-top: 25px;
+  min-width: 60px;
+
 }
 
 .xBtnModal {
@@ -174,5 +179,20 @@ main {
     min-width: 45px;
     background: $primaryOrange !important;
     color: white;
+  }
+
+  .redBtn {
+    float: right;
+    margin-left: 10px;
+    min-width: 45px;
+    background: $detailsRed !important;
+    color: white;
+  }
+}
+
+.delCat {
+  &:hover{
+    background: $detailsRed !important;
+    border: 1px solid $detailsRed;
   }
 }

@@ -1,3 +1,6 @@
-<div class="row" style="margin-left: 0px; margin-right: 0px;">
-    <div class="boxContainer shadow">HOLA QUE PASA home</div>
+<div>
+    <div *ngFor="let account of accounts" class="col-lg-12">
+        <app-acc [account]="account"></app-acc>    
+    </div>
 </div>
+    

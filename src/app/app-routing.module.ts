@@ -7,6 +7,7 @@ import { HomeComponent } from './main/home/home.component';
 import { ConfigComponent } from './main/config/config.component';
 import { DataformComponent } from './main/dataform/dataform.component';
 import { StatsComponent } from './main/stats/stats.component';
+import { AccComponent } from './main/home/acc/acc.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -38,5 +39,6 @@ export const routingComponents = [
   HomeComponent,
   ConfigComponent,
   DataformComponent,
-  StatsComponent
+  StatsComponent,
+  AccComponent
 ];

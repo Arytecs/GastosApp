@@ -6,12 +6,13 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { User } from '../../models/user.model';
 import { AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { AccountService } from '../../services/account.service';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-config',
   templateUrl: './config.component.html',
   styleUrls: ['./config.component.scss'],
-  providers: [UserService]
+  providers: [UserService, CategoryService, AccountService]
 })
 export class ConfigComponent implements OnInit, AfterViewChecked {
   public account: Account;
@@ -21,29 +22,28 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
   public accountToModify;
   public token;
   public status;
-  public categories: Category[] = [
-    new Category('Gasto', '1', 'father'),
-    new Category('Ingreso', '2', 'father')
-  ];
   public identity: User;
   public url: string;
-
-  public confirm = false;
-  public newFather: Category;
+  public categories;
+  public newCategory;
+  public catDel;
 
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
     private ref: ChangeDetectorRef,
     private _userService: UserService,
-    private _accountService: AccountService
+    private _accountService: AccountService,
+    private _categoryService: CategoryService
     ) {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.account = new Account('', '../../assets/AccountImg.jpg', '', [], '');
+    this.newCategory = new Category('', '', '', '');
   }
 
   ngOnInit() {
     this.getAccounts(this.token, this.identity._id);
+    this.getCategories(this.token, this.identity._id);
   }
 
   addAccount() {
@@ -88,10 +88,79 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
     this.ngxSmartModalService.getModal('confirm').open();
   }
 
-   doAcction(doAcction: boolean) {
-    this.confirm = doAcction;
+  addCategory(category) {
 
-    if (this.confirm && this.accountToModify.creator === this.identity._id) {
+    category.creator = this.identity._id;
+
+    this._categoryService.createCategory(category, this.token).subscribe(
+      response => {
+        if (response.category) {
+          this.status = 'success';
+        }
+      },
+      error => {
+        this.status = 'error';
+      }
+    );
+    this.ngxSmartModalService.getModal('myCate').close();
+    this.getCategories(this.token, this.identity._id);
+  }
+
+  getCategories(token, id) {
+    this._categoryService.getCategories(token, id).subscribe(
+      response => {
+        if (response.categories) {
+          this.categories = response.categories;
+        } else {
+          this.status = 'error';
+        }
+      },
+      error => {
+        const errorMessage = <any>error;
+        console.log(errorMessage);
+        if (errorMessage != null) {
+          this.status = 'error';
+        }
+      }
+    );
+  }
+
+  deleteCat(i) {
+    this.catDel = this.categories[i];
+
+    if (this.identity._id === this.catDel.creator) {
+      this.ngxSmartModalService.getModal('confirmCat').open();
+      console.log(this.catDel);
+    }
+  }
+
+  confirmCat(confirmed: boolean) {
+
+    if (confirmed) {
+      this._categoryService.deleteCategory(this.token, this.catDel._id).subscribe(
+        response => {
+          console.log('llego a response');
+          this.getCategories(this.token, this.identity);
+          this.ngxSmartModalService.getModal('confirmCat').close();
+        },
+        error => {
+          const errorMessage = <any>error;
+          console.log(errorMessage);
+          if (errorMessage != null) {
+            this.status = 'error';
+          }
+        }
+      );
+    } else {
+      this.status = 'error';
+      this.ngxSmartModalService.getModal('confirmCat').close();
+    }
+
+  }
+
+  confirmAcc(doAcction: boolean) {
+
+    if (doAcction && this.accountToModify.creator === this.identity._id) {
 
       this._accountService.deleteAccount(this.token, this.accountToModify._id).subscribe(
         response => {
@@ -134,7 +203,6 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
         this.status = 'error';
       }
     );
-    console.log('EStoy en SAVEACCOUNT');
     this.getAccounts(this.token, this.identity._id);
   }
 
