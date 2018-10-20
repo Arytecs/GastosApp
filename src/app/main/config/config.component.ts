@@ -37,12 +37,13 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
     ) {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
-    this.account = new Account('', '../../assets/AccountImg.jpg', '', [], '');
+    this.account = new Account('', '', '../../assets/AccountImg.jpg', '', [], '');
     this.newCategory = new Category('', '', '', '');
+    this.accountToModify = new Account('', '', '', '', [], '');
   }
 
   ngOnInit() {
-    this.getAccounts(this.token, this.identity._id);
+    this.getAccounts(this.identity._id);
     this.getCategories(this.token, this.identity._id);
   }
 
@@ -60,11 +61,11 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
       }
     );
     this.ngxSmartModalService.getModal('addAcc').close();
-    this.getAccounts(this.token, this.identity._id);
+    this.getAccounts(this.identity._id);
   }
 
-  getAccounts(token, id ) {
-    this._accountService.getAccounts(token, id).subscribe(
+  getAccounts(id ) {
+    this._accountService.getAccounts(this.token, id).subscribe(
       response => {
         if (response.accounts) {
           this.accounts = response.accounts;
@@ -96,6 +97,7 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
       response => {
         if (response.category) {
           this.status = 'success';
+          this.categories.push(response.category);
         }
       },
       error => {
@@ -103,7 +105,6 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
       }
     );
     this.ngxSmartModalService.getModal('myCate').close();
-    this.getCategories(this.token, this.identity._id);
   }
 
   getCategories(token, id) {
@@ -130,16 +131,15 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
 
     if (this.identity._id === this.catDel.creator) {
       this.ngxSmartModalService.getModal('confirmCat').open();
-      console.log(this.catDel);
+
     }
   }
 
-  confirmCat(confirmed: boolean) {
+  confirmCate(confirmed: boolean) {
 
     if (confirmed) {
       this._categoryService.deleteCategory(this.token, this.catDel._id).subscribe(
         response => {
-          console.log('llego a response');
           this.getCategories(this.token, this.identity);
           this.ngxSmartModalService.getModal('confirmCat').close();
         },
@@ -164,7 +164,7 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
 
       this._accountService.deleteAccount(this.token, this.accountToModify._id).subscribe(
         response => {
-          this.getAccounts(this.token, this.identity);
+          this.getAccounts(this.identity);
           this.ngxSmartModalService.getModal('confirm').close();
         },
         error => {
@@ -183,12 +183,10 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
   }
 
   modifyAccount(i: number) {
-
     this.accountToModify = this.accounts[i];
     const obj: Object = { index: i };
 
     this.ngxSmartModalService.setModalData(obj, 'myAcc');
-    this.newname = '';
     this.ngxSmartModalService.getModal('myAcc').open();
   }
 
@@ -203,7 +201,7 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
         this.status = 'error';
       }
     );
-    this.getAccounts(this.token, this.identity._id);
+    this.getAccounts(this.identity._id);
   }
 
   // addCategory(categoryName: string, categoryId: string, father: Category) {

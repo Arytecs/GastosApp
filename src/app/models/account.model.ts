@@ -1,9 +1,9 @@
 import { User } from './user.model';
-import { Movement } from './movement.model';
 
 export class Account {
 
   constructor(
+    public _id: string,
     public name: string,
     public img: string,
     public creator: string,

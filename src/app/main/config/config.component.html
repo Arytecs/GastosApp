@@ -21,34 +21,6 @@
           <div class="accountItem" *ngFor="let account of accounts; let i = index">
             <button  class="btn btnAcc" (click)="modifyAccount(i)"><img src="/assets/AccountImg.jpg" id="AccImg"></button> 
             <p>{{ account.name }}</p>
-            <!-- Modal que modifica y comparte las cuentas -->
-            <ngx-smart-modal #myAcc identifier="myAcc" *ngIf="accountToModify">
-                <header class="modalHeader">
-                  <h3>{{ accountToModify.name }}</h3> 
-                </header>
-                <body class="modalBody">
-                  <div class="input-group mb-3">
-                    <input type="text" class="form-control" [(ngModel)]="accountToModify.name" name="newname" placeholder="Nuevo nombre" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" (click)="saveAccount()">Cambiar</button>
-                    </div>
-                  </div>  
-                  <div class="input-group mb-3">
-                    <input type="email" class="form-control" [(ngModel)]="shareTo" name="shareTo" placeholder="Compartir con ejemplo@email.com" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" (click)="shareAccount(myAcc.getData().index)">Compartir</button>
-                    </div>
-                  </div> 
-                  <div class="sharedItem" *ngFor= "let shared of accountToModify.shared ; let i = index"> 
-                    <img class="roundedImg" [src]="accountToModify.shared[i].avatar" /> 
-                    <span class="sharedEmail">{{ accountToModify.shared[i].email }}</span>
-                    <button class="btn oi oi-x xBtnModal" (click)="deleteShared(myAcc.getData().index)"></button>
-                  </div>
-                </body>
-                  <footer class="modalFooter">
-                    <button type="button" class="btn redBtn" (click)="deleteAccount()">Borrar</button>                  
-                  </footer>                               
-              </ngx-smart-modal>
           </div> 
           <button class="btn btn-outline-success addBtn" (click)="ngxSmartModalService.getModal('addAcc').open();"><i class="oi oi-plus"></i></button>   
         </div>     
@@ -67,6 +39,35 @@
     </div>
   </main>
 </div>
+
+<!-- Modal que modifica y comparte las cuentas -->
+<ngx-smart-modal #myAcc identifier="myAcc">
+  <header class="modalHeader">
+    <h3>{{ accountToModify.name }}</h3> 
+  </header>
+  <body class="modalBody">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" [(ngModel)]="accountToModify.name" name="newname" placeholder="Nuevo nombre" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="saveAccount()">Cambiar</button>
+      </div>
+    </div>  
+    <div class="input-group mb-3">
+      <input type="email" class="form-control" [(ngModel)]="shareTo" name="shareTo" placeholder="Compartir con ejemplo@email.com" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="shareAccount(myAcc.getData().index)">Compartir</button>
+      </div>
+    </div> 
+    <div class="sharedItem" *ngFor= "let shared of accountToModify.shared ; let j = index"> 
+      <img class="roundedImg" [src]="accountToModify.shared[j].avatar" /> 
+      <span class="sharedEmail">{{ accountToModify.shared[j].email }}</span>
+      <button class="btn oi oi-x xBtnModal" (click)="deleteShared(myAcc.getData().index)"></button>
+    </div>
+  </body>
+    <footer class="modalFooter">
+      <button type="button" class="btn redBtn" (click)="deleteAccount()">Borrar</button>                  
+    </footer>                               
+</ngx-smart-modal>
 
 <!-- Modal que añade cuentas -->
 <ngx-smart-modal #addAcc identifier="addAcc" class="appModal">
@@ -134,7 +135,7 @@
       <p>¿Estás seguro?</p>   
   </body>
   <footer class="modalFooter">
-    <button type="button" class="btn modalBtn" (click)="confirmCat(true)">Si</button>
-    <button type="button" class="btn modalBtn" (click)="confirmCat(false)">No</button> 
+    <button type="button" class="btn modalBtn" (click)="confirmCate(true)">Si</button>
+    <button type="button" class="btn modalBtn" (click)="confirmCate(false)">No</button> 
   </footer>
 </ngx-smart-modal>

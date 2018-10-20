@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MovementService } from '../../../services/movement.service';
 import { UserService } from '../../../services/user.service';
+import { Account } from '../../../models/account.model';
+import { Movement } from '../../../models/movement.model';
 
 @Component({
   selector: 'app-acc',
@@ -8,10 +10,11 @@ import { UserService } from '../../../services/user.service';
   styleUrls: ['./acc.component.scss']
 })
 export class AccComponent implements OnInit {
-  public movements;
+  public movements: Movement[];
   public status;
   public token;
   public identity;
+  public total: number;
 
   @Input() account: Account;
 
@@ -21,20 +24,23 @@ export class AccComponent implements OnInit {
   ) {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.total = 0;
    }
 
   ngOnInit() {
-    this.movements = this.getMovements(this.token, this.account.id);
-    console.log(this.account);
+    this.getMovements(this.token);
   }
 
-  getMovements(token, account) {
+  getMovements(token) {
 
-    this._movementService.getMovements(token, account._id).subscribe(
+    this._movementService.getMovements(token, this.account._id).subscribe(
       response => {
-        if (response.categories) {
-          this.movements = response.categories;
-          console.log(this.movements);
+        if (response.movements) {
+          this.movements = response.movements;
+
+          this.movements.forEach(mov => {
+            this.total += mov.amount;
+          });
         } else {
           this.status = 'error';
         }

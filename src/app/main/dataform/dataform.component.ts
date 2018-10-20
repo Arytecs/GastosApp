@@ -39,11 +39,9 @@ export class DataformComponent implements OnInit {
 
   onSubmit(form) {
     this.movement.userId = this.identity._id;
-    console.log(this.movement);
     this._movementService.createMovement(this.movement, this.token).subscribe(
       response => {
         if (response) {
-          console.log('holi');
           this.status = 'success';
         }
       },

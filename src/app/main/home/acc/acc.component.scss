@@ -1,0 +1,19 @@
+@import '../../../../css/_flexbox.scss';
+@import '../../../../css/_variables.scss';
+
+.headerContent{
+    border-bottom: 1px solid $detailsGrey;
+    margin-bottom: 10px;
+}
+
+.bodyContent{
+
+    .movement {
+        margin-bottom: 5px;
+    }
+}
+
+.negative {
+    color: $detailsRed;
+}
+

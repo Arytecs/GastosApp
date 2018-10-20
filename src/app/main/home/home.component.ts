@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { MovementService } from '../../services/movement.service';
 import { UserService } from '../../services/user.service';
 import { AccountService } from '../../services/account.service';
+import { Account } from '../../models/account.model';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { AccountService } from '../../services/account.service';
 export class HomeComponent implements OnInit {
   public identity;
   public token;
-  public accounts;
+  public accounts: Account[];
   public status;
 
   constructor(
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.accounts = this.getAccounts(this.token, this.identity._id);
+    this.getAccounts(this.token, this.identity._id);
   }
 
   getAccounts(token, id) {
