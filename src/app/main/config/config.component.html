@@ -93,7 +93,7 @@
   </header>
   <body class="modalBody">
     <div id="newCategory">
-      <form #addCate="ngForm" (ngSubmit)="addCategory(newCategory)" class="login">
+      <form #addCate="ngForm" (ngSubmit)="addCategory()" class="login">
         <input autofocus type="name" 
           id="name" 
           class="form-control" 
@@ -101,8 +101,8 @@
           name="categoryName" 
           placeholder="Nombre categoria" 
           required>
-        <select class="form-control" id="father" [(ngModel)]="newCategory.idPadre" name="newFather" aria-placeholder="Selec Category" required>
-          <option *ngFor="let category of categories" [ngValue]="category.name">{{ category.name }}</option>
+        <select class="form-control" id="father" [(ngModel)]="newFather" name="father" aria-placeholder="Selec Category" required>
+          <option *ngFor="let category of categories" [ngValue]="category" name="newFather">{{ category.name }}</option>
         </select> 
         <input type="submit" class="btn btn-primary modalBtn" value="Añadir categoría" [disabled]="!addCate.form.valid">                                           
       </form>

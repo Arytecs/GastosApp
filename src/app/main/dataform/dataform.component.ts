@@ -20,6 +20,9 @@ export class DataformComponent implements OnInit {
   public token;
   public categories;
   public status;
+  public branch = false;
+  public incomes = [];
+  public expenses = [];
 
   constructor(
     private _accountService: AccountService,
@@ -30,14 +33,23 @@ export class DataformComponent implements OnInit {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.movement = new Movement('', '', 0, '', '', '', '');
+    this.categories = [];
   }
 
   ngOnInit() {
-    this.getAccounts(this.token, this.identity._id);
-    this.getCategories(this.token, this.identity._id);
+    this.getCategories();
+    this.getAccounts();
   }
 
   onSubmit(form) {
+
+    if (!this.branch && this.movement.amount > 0) {
+      this.movement.amount = 0 - this.movement.amount;
+    }
+    if (this.branch && this.movement.amount < 0) {
+      this.movement.amount = 0 - this.movement.amount;
+    }
+
     this.movement.userId = this.identity._id;
     this._movementService.createMovement(this.movement, this.token).subscribe(
       response => {
@@ -56,8 +68,8 @@ export class DataformComponent implements OnInit {
     form.reset();
   }
 
-  getAccounts(token, id ) {
-    this._accountService.getAccounts(token, id).subscribe(
+  getAccounts() {
+    this._accountService.getAccounts(this.token, this.identity._id).subscribe(
       response => {
         if (response.accounts) {
           this.accounts = response.accounts;
@@ -75,11 +87,12 @@ export class DataformComponent implements OnInit {
     );
   }
 
-  getCategories(token, id) {
-    this._categoryService.getCategories(token, id).subscribe(
+  getCategories() {
+    this._categoryService.getCategories(this.token, this.identity._id).subscribe(
       response => {
         if (response.categories) {
           this.categories = response.categories;
+          this.splitCategories();
         } else {
           this.status = 'error';
         }
@@ -92,5 +105,16 @@ export class DataformComponent implements OnInit {
         }
       }
     );
+  }
+
+  splitCategories() {
+
+    this.categories.forEach(element => {
+      if (element.branch) {
+        this.incomes.push(element);
+      } else {
+        this.expenses.push(element);
+      }
+    });
   }
 }

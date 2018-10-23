@@ -28,12 +28,12 @@ export class AccComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.getMovements(this.token);
+    this.getMovements();
   }
 
-  getMovements(token) {
+  getMovements() {
 
-    this._movementService.getMovements(token, this.account._id).subscribe(
+    this._movementService.getMovements(this.token, this.account._id).subscribe(
       response => {
         if (response.movements) {
           this.movements = response.movements;
