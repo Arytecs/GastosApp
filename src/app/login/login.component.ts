@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
 
   public onSubmit() {
     this.spinner.show();
-    console.log(this.user);
 
     this._userService.login(this.user).subscribe(
       response => {

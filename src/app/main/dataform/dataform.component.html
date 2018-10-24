@@ -11,16 +11,16 @@
             <input type="number" id="dataAmount" class="form-control col-md-4 col-xs-12" 
               [(ngModel)]="movement.amount" name="dataAmount" placeholder="Cantidad €" required>
 
-            <input type="date" [(ngModel)]="movement.created_at" value="dataDate" 
+            <input type="date" [(ngModel)]="movement.date" value="dataDate" 
             class="form-control col-md-4 col-xs-12" id="dateId" name="dataDate" required> 
             
-            <div class="col-md-12">
-              <label class="switch row">
+            <div class="row">
+              <span [class.expense]="!branch" class="tag expense">Gasto</span>
+              <label class="switch">
                 <input type="checkbox" [(ngModel)]="branch" name="branch" val-default="false">
                 <span class="slider round form-control"></span>                
               </label>
-              <span *ngIf="branch" class="tag">Ingreso</span>
-              <span *ngIf="!branch" class="tag">Gasto</span>
+              <span [class.income]="branch" class="tag income">Ingreso</span>                         
             </div>
             
             <select *ngIf="branch" name="category" class="form-control" [(ngModel)]="movement.category" required>

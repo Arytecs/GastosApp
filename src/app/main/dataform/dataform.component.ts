@@ -55,6 +55,7 @@ export class DataformComponent implements OnInit {
       response => {
         if (response) {
           this.status = 'success';
+          this.branch = false;
         }
       },
       error => {

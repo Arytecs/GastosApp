@@ -89,6 +89,26 @@ main {
     #dataAmount {
       margin-right: 5rem;
     }
+    .row {
+      width: 100%;
+      text-align: center;    
+      .tag {
+        flex-grow: 1;
+        margin-left: 0px;
+      }  
+      .slider{
+        flex-grow: 1;
+      }
+      .income {
+        font-weight: bold;
+        color: $detailsGreen;
+      }
+      .expense {
+        font-weight: bold;
+        color: $detailsRed;
+      }
+    }
+    
   }
   .btn-right {
     text-align: right;
