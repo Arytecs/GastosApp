@@ -14,10 +14,9 @@ export class UserService {
         this.url = GLOBAL.url;
     }
 
-    login(user: User, gettoken = null): Observable<any> {
-        if (gettoken != null) {
-            user.getToken = gettoken;
-            console.log('HOLIIIII');
+    login(user: User, isToken = null): Observable<any> {
+        if (isToken != null) {
+            user.isToken = isToken;
         }
 
         const params = JSON.stringify(user);
@@ -44,7 +43,7 @@ export class UserService {
     }
 
     getToken() {
-        const token = JSON.parse(localStorage.getItem('token'));
+        const token = localStorage.getItem('token');
 
         if (token !== 'undefined') {
             this.token = token;
@@ -52,5 +51,11 @@ export class UserService {
             this.token = null;
         }
         return this.token;
+    }
+
+    setImg(user: User): Observable<any> {
+        const params = JSON.stringify(user);
+        const clientHeaders = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this.http.post(this.url + '/upload-image-user/' + user._id , params, {headers: clientHeaders});
     }
 }
