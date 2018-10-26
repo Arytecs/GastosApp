@@ -26,10 +26,10 @@ export class LoginComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private _route: ActivatedRoute,
-    private _router: Router,
-    private _userService: UserService,
-    private _accountService: AccountService) {
-    this.user = new User('', '', '', '', false);
+
+    private _router: Router, private _userService: UserService) {
+      this.user = new User('', '', '', '', '', false);
+      this.password2 = '';
   }
 
   ngOnInit() {
@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
 
   public onSubmit() {
     this.spinner.show();
+
     this._userService.login(this.user).subscribe(
       response => {
         console.log(response);

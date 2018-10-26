@@ -1,0 +1,13 @@
+<div class="boxContainer shadow">
+    <div class="headerContent row">
+        <h4 class="flex-grow-1">{{ account.name}}</h4>
+        <span class="negative" [class.negative]="total < 0">{{total}}€</span> 
+    </div>  
+    
+    <div *ngFor="let movement of movements | slice:0:3;" class="bodyContent">
+        <div class="row movement">
+            <h6 class="flex-grow-1">{{ movement.name }}</h6>
+            <span class="negative" [class.negative]="movement.amount < 0">{{ movement.amount}} €</span> 
+        </div>  
+    </div>
+</div>

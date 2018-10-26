@@ -6,11 +6,12 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { AccComponent } from './main/home/acc/acc.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents,
+    routingComponents
   ],
   imports: [
     BrowserModule,

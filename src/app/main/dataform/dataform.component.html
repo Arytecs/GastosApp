@@ -3,25 +3,50 @@
   <main role="main" class="col-md-8">
       <div id="datosUser" class="boxContainer shadow">
         <h4>Añadir movimiento</h4>
-        <div class="row ">
-          <form class="dataForm">
-            <input autofocus type="name" id="dataName" class="form-control" [(ngModel)]="dataName" 
-              name="dataName" placeholder="Descripción gasto" required>
+        <div class="col">
+          <form #dataForm="ngForm" class="dataForm" (ngSubmit)="onSubmit(dataForm)">
+            <input autofocus type="name" id="dataName" class="form-control" [(ngModel)]="movement.name" 
+              name="dataName" placeholder="Descripción del movimiento" required>
+
             <input type="number" id="dataAmount" class="form-control col-md-4 col-xs-12" 
-              [(ngModel)]="dataAmount" name="dataAmount" placeholder="Cantidad €" required>
-            <input type="date" [(ngModel)]="dataDate" value="dataDate" 
+              [(ngModel)]="movement.amount" name="dataAmount" placeholder="Cantidad €" required>
+
+            <input type="date" [(ngModel)]="movement.date" value="dataDate" 
             class="form-control col-md-4 col-xs-12" id="dateId" name="dataDate" required> 
-            <select name="category" id="dataCategory" class="form-control" required>
-              <option *ngFor="let category of categories" [ngValue]="category"> {{ category.name }} </option>
+            
+            <div class="row">
+              <span [class.expense]="!branch" class="tag expense">Gasto</span>
+              <label class="switch">
+                <input type="checkbox" [(ngModel)]="branch" name="branch" val-default="false">
+                <span class="slider round form-control"></span>                
+              </label>
+              <span [class.income]="branch" class="tag income">Ingreso</span>                         
+            </div>
+            
+            <select *ngIf="branch" name="category" class="form-control" [(ngModel)]="movement.category" required>
+                  <option *ngFor="let category of incomes" [ngValue]="category._id">
+                    <span *ngIf="category.branch == branch">
+                        {{ category.name }}
+                    </span>
+                  </option>
             </select>
-            <select name="account" id="dataAccount" class="form-control" required>
-                <option *ngFor="let account of accounts" [ngValue]="account"> {{ account.name }} </option>
+
+            <select *ngIf="!branch" name="category" class="form-control" [(ngModel)]="movement.category" required>
+                <option *ngFor="let category of expenses" [ngValue]="category._id">
+                  <span *ngIf="category.branch == branch">
+                      {{ category.name }}
+                  </span>
+                </option>
+          </select>
+
+            <select name="account" id="dataAccount" class="form-control" [(ngModel)]="movement.account" required>
+                <option *ngFor="let account of accounts" [ngValue]="account._id"> {{ account.name }} </option>
             </select>
+
+            <input type="submit" class="btn btn-primary formBtn pull-right" value="Guardar" [disabled]="!dataForm.form.valid">
+            
           </form>
         </div>
-        <div class="btn-right">
-          <button class="btn btn-primary formBtn">Guardar</button>
-        </div> 
       </div>
   </main>
 </div>

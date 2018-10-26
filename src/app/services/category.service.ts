@@ -3,20 +3,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GLOBAL } from './global';
 import { User } from '../models/user.model';
-
-import { Account } from '../models/account.model';
+import { Category } from '../models/category.model';
 
 @Injectable()
-export class AccountService {
+export class CategoryService {
     public url: string;
     public identity: User;
     public token: string;
-    public account: Account;
-
+    public cateegory: Category;
 
     constructor(private http: HttpClient) {
         this.url = GLOBAL.url;
     }
+
     getIdentity() {
         const identity = JSON.parse(localStorage.getItem('identity'));
 
@@ -39,35 +38,23 @@ export class AccountService {
         return this.token;
     }
 
-    setImg(user: User): Observable<any> {
-        const params = JSON.stringify(user);
-        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
-        return this.http.post(this.url + '/upload-image-user/' + user._id , params, {headers: headers});
-    }
-
-    createAccount(account, token): Observable<any> {
-        const params = JSON.stringify(account);
+    createCategory(category, token): Observable<any> {
+        const params = JSON.stringify(category);
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
 
-        return this.http.post(this.url + 'save-account', params, {headers: headers});
+        return this.http.post(this.url + 'save-category', params, {headers: headers});
     }
 
-    getAccounts(token, id): Observable<any> {
+    getCategories(token, id): Observable<any> {
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
 
-        return this.http.get(this.url + 'get-accounts/' + id, {headers: headers});
+        return this.http.get(this.url + 'get-categories/' + id, {headers: headers});
     }
 
-    updateAccount(token, account): Observable<any> {
-        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
-        const params = account;
-
-        return this.http.put(this.url + 'update-acc/', params, {headers: headers});
-    }
-
-    deleteAccount(token, id): Observable<any> {
+    deleteCategory(token, id): Observable<any> {
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
 
-        return this.http.delete(this.url + '/delete-acc/' + id, {headers: headers});
+        return this.http.delete(this.url + 'delete-category/' + id, {headers: headers});
     }
+
 }
