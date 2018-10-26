@@ -90,13 +90,13 @@
                   </div>
                 </form>
     
-                <div class="alert alert-danger text-left msgBox" *ngIf="!emailRegister.valid && emailRegister.touched || confirmpassword != passwordRegister && confirmpassword.touched">
+                <div class="alert alert-danger text-left msgBox" *ngIf="!emailRegister.valid && emailRegister.touched || user.password != password2 && confirmpassword.touched">
                   Datos Incorrectos
                   <ul>
                     <li *ngIf="!name.valid && name.touched">Debe introducir su nombre</li>
                     <li *ngIf="!emailRegister.valid && emailRegister.touched">Debe introducir el email, y éste debe ser válido</li>
                     <li *ngIf="!passwordRegister.valid && passwordRegister.touched">Debe introducir una contraseña</li>
-                    <li *ngIf="confirmpassword != passwordRegister">Las contraseñas deben coincidir</li>
+                    <li *ngIf="user.password != password2">Las contraseñas deben coincidir</li>
                   </ul>
                 </div>
     
