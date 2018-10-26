@@ -27,6 +27,7 @@ export class UserService {
     register(user: User): Observable<any> {
         const params = JSON.stringify(user);
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
         return this.http.post(this.url + 'register', params, { headers: headers });
     }
 

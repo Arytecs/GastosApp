@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GLOBAL } from './global';
 import { User } from '../models/user.model';
+
 import { Account } from '../models/account.model';
 
 @Injectable()
@@ -12,10 +13,10 @@ export class AccountService {
     public token: string;
     public account: Account;
 
+
     constructor(private http: HttpClient) {
         this.url = GLOBAL.url;
     }
-
     getIdentity() {
         const identity = JSON.parse(localStorage.getItem('identity'));
 
@@ -69,5 +70,4 @@ export class AccountService {
 
         return this.http.delete(this.url + '/delete-acc/' + id, {headers: headers});
     }
-
 }

@@ -3,12 +3,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AccountService } from '../services/account.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [UserService]
+  providers: [UserService, AccountService]
 })
 export class LoginComponent implements OnInit {
   public user: User;
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private _route: ActivatedRoute,
+
     private _router: Router, private _userService: UserService) {
       this.user = new User('', '', '', '', '', false);
       this.password2 = '';
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
 
     this._userService.login(this.user).subscribe(
       response => {
+        console.log(response);
         this.identity = response.user;
         if (!this.identity) {
           this.isLoginMsg = true;
@@ -64,6 +67,14 @@ export class LoginComponent implements OnInit {
         }
       }
     );
+    this._accountService.prueba().subscribe(
+      response => {
+
+      },
+      error => {
+
+      }
+    );
   }
 
   public onRegister() {
@@ -80,6 +91,8 @@ export class LoginComponent implements OnInit {
           this.loginMessage = this.successMessageRegister;
         }
         this.spinner.hide();
+        console.log(this.user);
+        console.log(response);
       },
     error => {
       this.spinner.hide();
@@ -93,6 +106,7 @@ export class LoginComponent implements OnInit {
   getToken(): any {
     this._userService.login(this.user, true).subscribe(
       response => {
+        console.log(response);
         this.isLoginMsg = false;
         this.token = response.token;
         if (!this.token) {
