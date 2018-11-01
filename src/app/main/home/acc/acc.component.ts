@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MovementService } from '../../../services/movement.service';
 import { UserService } from '../../../services/user.service';
 import { Account } from '../../../models/account.model';
 import { Movement } from '../../../models/movement.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-acc',
@@ -15,17 +16,24 @@ export class AccComponent implements OnInit {
   public token;
   public identity;
   public total: number;
+  public transfer = false;
+  public movement: Movement;
+  public date;
 
   @Input() account: Account;
+  @Input() accounts = [];
+  @Output() setAccount: EventEmitter<Account> = new EventEmitter<Account>();
 
   constructor(
     private _movementService: MovementService,
-    private _userService: UserService
+    private _userService: UserService,
+    private router: Router
   ) {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.total = 0;
-   }
+    this.date = Date.now();
+    this.movement = new Movement('', '', 0, this.date , '', '', '', '');   }
 
   ngOnInit() {
     this.getMovements();
@@ -53,5 +61,14 @@ export class AccComponent implements OnInit {
         }
       }
     );
-}
+  }
+
+  setTransfer() {
+    this.transfer = !this.transfer;
+  }
+
+  sendTransfer() {
+    console.log('hola');
+  }
+
 }

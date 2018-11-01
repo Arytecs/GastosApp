@@ -10,10 +10,30 @@
 
     .movement {
         margin-bottom: 5px;
+        margin-left: 3px;
     }
 }
 
+.movements {
+    align-items: flex-end;
+
+    a {
+        margin: 1rem;
+        color: $primaryGrey;
+        text-decoration: none;
+    }
+    button {
+        margin: 1rem;
+        justify-content: space-evenly;
+    }
+}
+
+
 .negative {
     color: $detailsRed;
+}
+
+.positive {
+    color: $detailsGreen;
 }
 

@@ -16,7 +16,9 @@ export class MenuComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   // Buscar toggle de angular.
-  ngOnInit() {}
+  ngOnInit() {
+    this.toggleMenu();
+  }
 
   public toggleMenu() {
     this.statusMenu = !this.statusMenu;

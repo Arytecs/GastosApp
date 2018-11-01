@@ -24,6 +24,7 @@
             </div>
             
             <select *ngIf="branch" name="category" class="form-control" [(ngModel)]="movement.category" required>
+                <option class="placeholder" selected disabled value="">Categoría</option>
                   <option *ngFor="let category of incomes" [ngValue]="category._id">
                     <span *ngIf="category.branch == branch">
                         {{ category.name }}
@@ -32,18 +33,27 @@
             </select>
 
             <select *ngIf="!branch" name="category" class="form-control" [(ngModel)]="movement.category" required>
+                <option class="placeholder" selected disabled value="">Categoría</option>
                 <option *ngFor="let category of expenses" [ngValue]="category._id">
                   <span *ngIf="category.branch == branch">
                       {{ category.name }}
                   </span>
                 </option>
-          </select>
-
-            <select name="account" id="dataAccount" class="form-control" [(ngModel)]="movement.account" required>
-                <option *ngFor="let account of accounts" [ngValue]="account._id"> {{ account.name }} </option>
             </select>
 
-            <input type="submit" class="btn btn-primary formBtn pull-right" value="Guardar" [disabled]="!dataForm.form.valid">
+            <select name="account" id="dataAccount" class="form-control" [(ngModel)]="movement.account" required>
+                <option class="placeholder" selected disabled value="">Cuenta</option>
+                <option *ngFor="let account of accounts" [ngValue]="account._id"> {{ account.name }} </option>
+            </select>
+            
+            <p *ngIf="status">
+              <span class="alert alert-success" >Se ha guardado el movimiento correctamente!</span>
+            </p>
+            
+            <div class="row buttons">
+              <button type="button" class="btn btn-danger pull-left" (click)="cancel(dataForm)">Cancelar</button>
+              <input type="submit" class="btn btn-primary formBtn pull-right" value="Guardar" [disabled]="!dataForm.form.valid">
+            </div>            
             
           </form>
         </div>
