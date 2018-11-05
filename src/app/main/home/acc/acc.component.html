@@ -1,33 +1,32 @@
 <div class="boxContainer shadow">
     <div class="headerContent row">
-        <h4 class="flex-grow-1">{{ account.name}}</h4>
+        <h4>{{ account.name}}</h4>
+        <div class="movements flex-grow-1">
+            <a role="button" class="oi oi-loop" id="btnTransfer" (click)="setTransfer()"></a>            
+        </div>
         <span class="negative positive" [class.negative]="total < 0" [class.positive]="total > 0">{{total}}€</span> 
     </div>  
-    
+    <div *ngIf="transfer">
+        <div class="dataForm">
+            Nueva transferencia:
+            <input type="text" class="form-control" [(ngModel)]="transf.name" placeholder="Descripción">
+            <input type="number" class="form-control" [(ngModel)]="transf.amount">
+            <select name="account" id="dataAccount" class="form-control" [(ngModel)]="transf.account" required>
+                <option class="placeholder" selected disabled value="">Cuenta destino</option>
+                <option *ngFor="let account of accounts" [ngValue]="account._id"> {{ account.name }} </option>
+            </select>
+            <div class="row">
+                <button role="button" class="btn btn-danger" (click)="setTransfer()">Cancelar</button>
+                <button role="button" class="btn btn-success" (click)="sendTransfer()">Enviar</button>
+            </div>
+            
+        </div>
+    </div>
     <div *ngFor="let movement of movements | slice:0:3;" class="bodyContent">
         <div class="row movement">
             <h6 class="flex-grow-1">{{ movement.name }}</h6>
             <span class="negative positive" [class.negative]="movement.amount < 0" [class.positive]="movement.amount > 0">{{ movement.amount}} €</span> 
         </div>  
-    </div>
-    <div class="movements">
-        <a role="button" class="oi oi-loop" id="btnTransfer" (click)="setTransfer()"></a>
-        <div *ngIf="transfer">
-            <div class="dataForm">
-                Nueva transferencia:
-                <input type="number" class="form-control" [(ngModel)]="movement.amount">
-                <select name="account" id="dataAccount" class="form-control" [(ngModel)]="movement.account" required>
-                    <option class="placeholder" selected disabled value="">Cuenta destino</option>
-                    <option *ngFor="let account of accounts" [ngValue]="account._id"> {{ account.name }} </option>
-                </select>
-                <div class="row">
-                    <button role="button" class="btn btn-danger" (click)="setTransfer()">Cancelar</button>
-                    <button role="button" class="btn btn-success" (click)="sendTransfer()">Enviar</button>
-                </div>
-                
-            </div>
-        </div>
-        
     </div>
 </div>
 

@@ -17,7 +17,7 @@ export class AccComponent implements OnInit {
   public identity;
   public total: number;
   public transfer = false;
-  public movement: Movement;
+  public transf: Movement;
   public date;
 
   @Input() account: Account;
@@ -33,7 +33,7 @@ export class AccComponent implements OnInit {
     this.token = this._userService.getToken();
     this.total = 0;
     this.date = Date.now();
-    this.movement = new Movement('', '', 0, this.date , '', '', '', '');   }
+    this.transf = new Movement('', '', 0, this.date , '', '', '', '');   }
 
   ngOnInit() {
     this.getMovements();
@@ -68,7 +68,51 @@ export class AccComponent implements OnInit {
   }
 
   sendTransfer() {
-    console.log('hola');
+
+    if (this.total >= this.transf.amount && this.transf.amount > 0) {
+      this.transf.category = 'Transferencia';
+      this.transf.userId = this.identity._id;
+      this._movementService.createMovement(this.transf, this.token).subscribe (
+        response => {
+        if (response.movement) {
+          this.status = 'success';
+        } else {
+          this.status = 'error';
+        }
+      },
+      error => {
+        const errorMessage = <any>error;
+        console.log(errorMessage);
+        if (errorMessage != null) {
+          this.status = 'error';
+        }
+      });
+
+      this.transf.amount = 0 - this.transf.amount;
+      this.transf.account = this.account._id;
+
+      this._movementService.createMovement(this.transf, this.token).subscribe (
+        response => {
+        if (response.movement) {
+          this.status = 'success';
+        } else {
+          this.status = 'error';
+        }
+      },
+      error => {
+        const errorMessage = <any>error;
+        console.log(errorMessage);
+        if (errorMessage != null) {
+          this.status = 'error';
+        }
+      });
+      this.transfer = false;
+      this.getMovements();
+    } else {
+      this.status = 'error';
+      console.log('no hay dinero');
+    }
   }
+
 
 }
