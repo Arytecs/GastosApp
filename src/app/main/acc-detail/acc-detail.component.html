@@ -1,0 +1,20 @@
+<div *ngIf="account" class="boxContainer shadow">
+  <div class="row" id="title">
+    <a routerLink="/main/home">
+      <span class="oi oi-arrow-thick-left" id="backarrow"></span>
+    </a>
+    
+    <h4 class="flex-grow-1">{{ account.name }}</h4>
+    <div class="negative positive total" [class.negative]="total < 0" [class.positive]="total > 0">{{ total }}</div>
+  </div>
+  <div *ngIf="movements">
+    <div *ngFor="let movement of movements">
+      <div class="row" id="movement">
+        
+        <div id="date">{{ movement.date}}</div>
+        <div class="flex-grow-1" id="name">{{ movement.name}}</div>
+        <div id="amount"><span class="negative positive" [class.negative]="movement.amount < 0" [class.positive]="movement.amount > 0">{{ movement.amount}} €</span> </div>
+      </div>
+    </div>
+  </div>
+</div>

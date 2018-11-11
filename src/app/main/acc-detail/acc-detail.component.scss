@@ -1,0 +1,46 @@
+@import '../../../css/_flexbox.scss';
+@import '../../../css/_variables.scss';
+
+.boxContainer {
+    #title {
+        border-bottom: 1px solid $detailsGrey;
+        align-items: baseline;
+
+        #backarrow{
+            margin-left: 10px;
+        }
+        h4 {
+            margin-left: 1rem;
+        }
+        .total {
+            font-weight: bold;
+        }
+        a {
+            color: $primaryGrey;
+        }
+    }
+    
+    #movement {
+        margin-bottom: 5px;
+        cursor: pointer;
+    
+        #date {
+            margin-left: 1rem;
+        }
+        #name {
+            padding-left: 1rem;
+            font-weight: bold;
+        }
+        #amount {
+
+        }
+    }
+
+    .negative {
+        color: $detailsRed;
+    }
+    
+    .positive {
+        color: $detailsGreen;
+    }
+}

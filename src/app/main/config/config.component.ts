@@ -58,11 +58,15 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
         }
       },
       error => {
-        this.status = 'error';
+        const errorMessage = <any>error;
+        console.log(errorMessage);
+        if (errorMessage != null) {
+          this.status = 'error';
+        }
       }
     );
-    this.ngxSmartModalService.getModal('addAcc').close();
     this.getAccounts();
+    this.ngxSmartModalService.getModal('addAcc').close();
   }
 
   getAccounts() {
@@ -101,6 +105,7 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
         if (response.category) {
           this.status = 'success';
           this.categories.push(response.category);
+          this.newCategory.name = '';
         }
       },
       error => {
@@ -202,53 +207,20 @@ export class ConfigComponent implements OnInit, AfterViewChecked {
       response => {
         if (response) {
           this.status = 'success';
+          this.getAccounts();
         }
       },
       error => {
         this.status = 'error';
       }
     );
-    this.getAccounts();
   }
-
-  // addCategory(categoryName: string, categoryId: string, father: Category) {
-  //   this.categories.push(new Category(categoryName, categoryId, father.id));
-  //   this.categoryName = '';
-  //   this.ngxSmartModalService.getModal('myCate').close();
-  // }
-
-  // shareAccount(index: number) {
-  //   this.accountToModify.shared.push(new User('Araceli', '1234', this.shareTo, './assets/userAvatar.jpg', false));
-  //   this.shareTo = '';
-  // }
-
-  // deleteShared(index: number) {
-  //   this.accountToModify.shared.splice(index, 1);
-  // }
 
   public keyDownAcc(event) {
     if (event.keyCode === 13) {
       this.addAccount();
     }
   }
-
-  // public keyDownCat(event, categoryName: string, categoryId: string, newFather: Category) {
-  //   if (event.keyCode === 13) {
-  //     this.addCategory(categoryName, categoryId, newFather);
-  //   }
-  // }
-
-  // public handleFileInput(files: FileList) {
-  //   this._userService.setImg(this.identity).subscribe(res => {
-  //     console.log(res);
-  //   }, error => {
-  //     console.log(error);
-  //   });
-  //   this.identity.avatar = files.item(0).name;
-  //   console.log(files.item(0).name);
-  // }
-
-
 
   ngAfterViewChecked(): void {
     this.ref.detectChanges();

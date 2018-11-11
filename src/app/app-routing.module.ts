@@ -8,6 +8,7 @@ import { ConfigComponent } from './main/config/config.component';
 import { DataformComponent } from './main/dataform/dataform.component';
 import { StatsComponent } from './main/stats/stats.component';
 import { AccComponent } from './main/home/acc/acc.component';
+import { AccDetailComponent } from './main/acc-detail/acc-detail.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
       {path: 'home', component: HomeComponent},
       {path: 'config', component: ConfigComponent},
       {path: 'dataform', component: DataformComponent},
-      {path: 'stats', component: StatsComponent}
+      {path: 'stats', component: StatsComponent},
+      {path: 'acc-detail/:id', component: AccDetailComponent}
     ]
   },
   {path: '**', component: LoginComponent}
@@ -40,5 +42,6 @@ export const routingComponents = [
   ConfigComponent,
   DataformComponent,
   StatsComponent,
-  AccComponent
+  AccComponent,
+  AccDetailComponent
 ];

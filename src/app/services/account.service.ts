@@ -52,6 +52,12 @@ export class AccountService {
         return this.http.post(this.url + 'save-account', params, {headers: headers});
     }
 
+    getAccount(token, id): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
+
+        return this.http.get(this.url + 'get-account/' + id, {headers: headers});
+    }
+
     getAccounts(token, id): Observable<any> {
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
 

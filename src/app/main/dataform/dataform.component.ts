@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Category } from '../../models/category.model';
 import { AccountService } from '../../services/account.service';
 import { UserService } from '../../services/user.service';
 import { Movement } from '../../models/movement.model';
 import { CategoryService } from '../../services/category.service';
 import { MovementService } from '../../services/movement.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-dataform',
@@ -23,22 +24,31 @@ export class DataformComponent implements OnInit {
   public branch = false;
   public incomes = [];
   public expenses = [];
+  public date;
+
+  @Input() setAccount: Account;
 
   constructor(
     private _accountService: AccountService,
     private _userService: UserService,
     private _categoryService: CategoryService,
-    private _movementService: MovementService
+    private _movementService: MovementService,
+    private _locationService: Location
   ) {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
-    this.movement = new Movement('', '', 0, '', '', '', '');
+    this.date = Date.now();
+    this.movement = new Movement('', '', 0, this.date , '', '', '', '');
     this.categories = [];
   }
 
   ngOnInit() {
     this.getCategories();
     this.getAccounts();
+
+    if (this.setAccount) {
+      this.movement.category = this.setAccount.id;
+    }
   }
 
   onSubmit(form) {
@@ -56,6 +66,9 @@ export class DataformComponent implements OnInit {
         if (response) {
           this.status = 'success';
           this.branch = false;
+          setTimeout( () => {
+            this.status = '';
+          }, 3000);
         }
       },
       error => {
@@ -117,5 +130,10 @@ export class DataformComponent implements OnInit {
         this.expenses.push(element);
       }
     });
+  }
+
+  cancel(form) {
+    form.reset();
+    this._locationService.back();
   }
 }

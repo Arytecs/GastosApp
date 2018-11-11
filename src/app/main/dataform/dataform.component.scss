@@ -79,12 +79,21 @@ main {
   .dataForm {
     @include flexbox();
     flex-wrap: wrap;
-
+    .buttons {
+      align-items: first baseline;
+      justify-content: space-evenly;
+    }
     input {
       margin-bottom: 10px;
     }
     select {
       margin-bottom: 10px;
+    }
+    .btn-danger {
+      height: 33.5px;
+    }
+    p {
+      margin-top: 1rem;
     }
     #dataAmount {
       margin-right: 5rem;
