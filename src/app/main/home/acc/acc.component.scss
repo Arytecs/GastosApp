@@ -1,6 +1,11 @@
 @import '../../../../css/_flexbox.scss';
 @import '../../../../css/_variables.scss';
 
+a {
+    color: $primaryGrey;
+    text-decoration: none;
+}
+
 .headerContent{
     border-bottom: 1px solid $detailsGrey;
     margin-bottom: 10px;
@@ -17,6 +22,10 @@
 
 .movements {
     align-items: flex-end;
+
+    #btnTransfer {
+        cursor: pointer;
+    }
 
     a {
         margin: 1rem;

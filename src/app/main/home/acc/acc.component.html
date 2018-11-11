@@ -1,6 +1,6 @@
 <div class="boxContainer shadow">
     <div class="headerContent row">
-        <h4>{{ account.name}}</h4>
+        <a routerLink="/main/acc-detail/{{ account._id }}"><h4>{{ account.name}}</h4></a> 
         <div class="movements flex-grow-1">
             <a role="button" class="oi oi-loop" id="btnTransfer" (click)="setTransfer()"></a>            
         </div>
@@ -22,11 +22,13 @@
             
         </div>
     </div>
-    <div *ngFor="let movement of movements | slice:0:3;" class="bodyContent">
-        <div class="row movement">
-            <h6 class="flex-grow-1">{{ movement.name }}</h6>
-            <span class="negative positive" [class.negative]="movement.amount < 0" [class.positive]="movement.amount > 0">{{ movement.amount}} €</span> 
-        </div>  
-    </div>
+    <a routerLink="/main/acc-detail/{{ account._id }}">
+        <div *ngFor="let movement of movements | slice:0:3;" class="bodyContent">
+            <div class="row movement">
+                <h6 class="flex-grow-1">{{ movement.name }}</h6>
+                <span class="negative positive" [class.negative]="movement.amount < 0" [class.positive]="movement.amount > 0">{{ movement.amount}} €</span> 
+            </div>  
+        </div>
+    </a>
 </div>
 

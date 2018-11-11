@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
 
     this._userService.login(this.user).subscribe(
       response => {
-        console.log(response);
         this.identity = response.user;
         if (!this.identity) {
           this.isLoginMsg = true;
@@ -83,8 +82,6 @@ export class LoginComponent implements OnInit {
           this.loginMessage = this.successMessageRegister;
         }
         this.spinner.hide();
-        console.log(this.user);
-        console.log(response);
       },
     error => {
       this.spinner.hide();
@@ -98,7 +95,6 @@ export class LoginComponent implements OnInit {
   getToken(): any {
     this._userService.login(this.user, true).subscribe(
       response => {
-        console.log(response);
         this.isLoginMsg = false;
         this.token = response.token;
         if (!this.token) {

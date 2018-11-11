@@ -4,6 +4,7 @@ import { UserService } from '../../../services/user.service';
 import { Account } from '../../../models/account.model';
 import { Movement } from '../../../models/movement.model';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-acc',
@@ -22,7 +23,7 @@ export class AccComponent implements OnInit {
 
   @Input() account: Account;
   @Input() accounts = [];
-  @Output() setAccount: EventEmitter<Account> = new EventEmitter<Account>();
+  @Output() prueba = 'hola';
 
   constructor(
     private _movementService: MovementService,
@@ -72,6 +73,7 @@ export class AccComponent implements OnInit {
     if (this.total >= this.transf.amount && this.transf.amount > 0) {
       this.transf.category = 'Transferencia';
       this.transf.userId = this.identity._id;
+      this.transf.date = moment().format('YYYY-MM-DD');
       this._movementService.createMovement(this.transf, this.token).subscribe (
         response => {
         if (response.movement) {
